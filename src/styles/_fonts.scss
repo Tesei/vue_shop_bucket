@@ -1,0 +1,10 @@
+/* Include fonts
+   ========================================================================= */
+
+//  * Roboto, Lato
+@import url(https://fonts.googleapis.com/css?family=Roboto:regular,500,600,700&display=swap);
+
+@include fontFace('Lato', 'latoregular', 400, 'normal', 'woff2');
+@include fontFace('Lato', 'latomedium', 500, 'normal', 'woff2');
+@include fontFace('Lato', 'latosemibold', 600, 'normal', 'woff2');
+@include fontFace('Lato', 'latobold', 700, 'normal', 'woff2');

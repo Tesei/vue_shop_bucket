@@ -1,0 +1,7 @@
+@mixin fontFace($fontName, $fontFileName, $fontWeight, $fontStyle, $woff)
+    @font-face
+        font-display: swap
+        font-family: $fontName
+        src: local($fontName), url('@/styles/fonts/' + $fontFileName + "." + $woff) format($woff)
+        font-weight: $fontWeight
+        font-style: $fontStyle

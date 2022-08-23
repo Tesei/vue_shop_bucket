@@ -1,0 +1,82 @@
+// <ОБОЛОЧКА>=======================
+html {
+	color: $black;
+	font-size: $fontSize;
+	background-color: $white;
+}
+
+.wrapper {
+	width: 100%;
+	min-height: 100%;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+
+	&._loaded {}
+}
+
+//</ОБОЛОЧКА>=====================================================================
+//<ОСНОВНОЙ БЛОК>====================================================================================================
+body {
+	font-size: 1.4rem;
+	font-family: $font-family-base;
+	color: $black;
+	font-style: normal;
+}
+//</ОСНОВНОЙ БЛОК>====================================================================================================
+
+h1,h2,h3,h4,h5,h6 {	
+	line-height: 1.45;
+	font-weight: 400;
+}
+
+h3 {
+	font-size: 1.8rem;
+}
+
+h4{
+	font-size: 1.6rem;
+}
+
+h5 {
+	font-size: 1.4rem;
+	line-height: 1.5;
+}
+
+h6 {
+	font-size: 1.2rem;    
+}
+
+._ibg {
+	position: relative;
+	img {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		object-fit: cover;
+	}
+}
+
+.btn{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	font-weight: 600;
+	font-size: 1.8rem;
+	margin-bottom: 12px;
+	border-radius: 4px;
+	line-height: 1.45;
+	padding: 14px 0;
+	color: $white;
+	background-color: $blue;
+	transition: all 0.2s ease 0s;
+	@media (min-width: $md2) {
+	&:hover {
+	transform: scale(1.02);
+	}
+	}
+}

@@ -120,9 +120,9 @@
             <div class="slider__usr-btns">
                 <button class="slider__usr-button slider__usr-button_prev"></button>
                 <div class="slider__sheets">
-                    <span class="swiper-pagination-current slider__sheets-from">1</span>
+                    <span class="swiper-pagination-current slider__sheets-from"></span>
                     /
-                    <span class="swiper-pagination-total slider__sheets-all">6</span>
+                    <span class="swiper-pagination-total slider__sheets-all"></span>
                 </div>
                 <button class="slider__usr-button slider__usr-button_next "></button>
             </div>
@@ -159,7 +159,8 @@ export default {
             swiper.params.pagination.el = document.querySelector('.slider__sheets');
             swiper.pagination.init();
             swiper.pagination.update();
-            document.querySelector('.swiper-pagination').style.display = "none";
+            document.querySelector('.swiper-pagination').remove();
+            // document.querySelector('.swiper-pagination').style.display = "none";
         };
 
         return {

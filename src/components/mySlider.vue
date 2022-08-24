@@ -4,7 +4,7 @@
         <div class="slider__slide">
             <swiper :modules="modules" :slides-per-view="1" :space-between="30" :navigation="true"
                 :pagination="{ type: 'fraction', }" @swiper="onSwiper" @slideChange="onSlideChange"
-                :preload-images="false" :loop="true">
+                :preload-images="false">
                 <swiper-slide>
                     <ul class="slider__items">
                         <li class="slider__item item-slide">
@@ -27,7 +27,7 @@
                                     <span class="item-slide__price-eur_to">643.86 €</span>
                                 </h4>
                             </div>
-                            <div class="btn item-slide__btn">Подробнее</div>
+                            <button class="btn item-slide__btn">Подробнее</button>
                         </li>
                         <li class="slider__item item-slide">
                             <div class="item-slide__image-wrap _ibg">
@@ -49,7 +49,7 @@
                                     <span class="item-slide__price-eur_to">643.86 €</span>
                                 </h4>
                             </div>
-                            <div class="btn item-slide__btn">Подробнее</div>
+                            <button class="btn item-slide__btn">Подробнее</button>
                         </li>
                         <li class="slider__item item-slide">
                             <div class="item-slide__image-wrap _ibg">
@@ -70,7 +70,7 @@
                                     <span class="item-slide__price-eur_to">643.86 €</span>
                                 </h4>
                             </div>
-                            <div class="btn item-slide__btn">Подробнее</div>
+                            <button class="btn item-slide__btn">Подробнее</button>
                         </li>
                         <li class="slider__item item-slide">
                             <div class="item-slide__image-wrap _ibg">
@@ -91,7 +91,7 @@
                                     <span class="item-slide__price-eur_to">643.86 €</span>
                                 </h4>
                             </div>
-                            <div class="btn item-slide__btn">Подробнее</div>
+                            <button class="btn item-slide__btn">Подробнее</button>
                         </li>
                     </ul>
                 </swiper-slide>
@@ -111,7 +111,7 @@
                                 <div class="item-slide__price-rub">6 848 ₽ – 56 584 ₽</div>
                                 <h4 class="item-slide__price-eur">77.60 € – 643.86 €</h4>
                             </div>
-                            <div class="btn item-slide__btn">Подробнее</div>
+                            <button class="btn item-slide__btn">Подробнее</button>
                         </li>
                     </ul>
                 </swiper-slide>
@@ -141,7 +141,6 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 
 // Import Swiper styles
 import 'swiper/scss';
-// import 'swiper/css/pagination';
 
 export default {
     components: {
@@ -151,7 +150,6 @@ export default {
     setup() {
 
         const onSwiper = (swiper) => {
-            console.log(swiper);
 
             swiper.params.navigation.prevEl = document.querySelector('.slider__usr-button_prev');
             swiper.params.navigation.nextEl = document.querySelector('.slider__usr-button_next');
@@ -163,26 +161,11 @@ export default {
             swiper.pagination.update();
             document.querySelector('.swiper-pagination').style.display = "none";
         };
-        const onSlideChange = () => {
-            console.log('slide change');
-        };
 
         return {
             onSwiper,
-            onSlideChange,
             modules: [Navigation, Pagination],
-
         };
-    },
-    data() {
-        return {
-            swiperOption: {
-                navigation: {
-                    nextEl: '.slider__usr-button_next',
-                    prevEl: '.slider__usr-button_prev'
-                },
-            }
-        }
     },
 }
 </script>
@@ -236,7 +219,7 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-
+        transition: all 0.2s ease 0s;
 
         &::after {
             content: '';
@@ -251,6 +234,12 @@ export default {
             mask-repeat: no-repeat;
             mask-position: center;
             background-color: $white;
+        }
+
+        @media (min-width: $md2) {
+            &:hover {
+                background-color: lighten($gray-arrow, 10%);
+            }
         }
 
         // .slider__usr-button_next
@@ -334,5 +323,9 @@ export default {
     &__btn {
         font-size: 1.6rem;
     }
+}
+
+.swiper-button-disabled {
+    background-color: lighten($gray-arrow, 17%);
 }
 </style>

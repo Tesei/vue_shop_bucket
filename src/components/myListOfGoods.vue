@@ -23,9 +23,9 @@
                     </div>
                     <div class="goods__amount-btns btns">
                         <div class="btns__row">
-                            <div class="btns__minus btns__cube">-</div>
+                            <button class="btns__minus btns__cube">-</button>
                             <div class="btns__amount btns__cube">1 </div>
-                            <div class="btns__plus btns__cube">+</div>
+                            <button class="btns__plus btns__cube">+</button>
                         </div>
                         <div class="btns__price-of-bit"></div>
                     </div>
@@ -48,9 +48,9 @@
                     </div>
                     <div class="goods__amount-btns btns">
                         <div class="btns__row">
-                            <div class="btns__minus btns__cube">-</div>
+                            <button class="btns__minus btns__cube">-</button>
                             <div class="btns__amount btns__cube">2 </div>
-                            <div class="btns__plus btns__cube">+</div>
+                            <button class="btns__plus btns__cube">+</button>
                         </div>
                         <div class="btns__price-of-bit">12 644 ₽/шт.</div>
                     </div>
@@ -73,9 +73,9 @@
                     </div>
                     <div class="goods__amount-btns btns">
                         <div class="btns__row">
-                            <div class="btns__minus btns__cube">-</div>
+                            <button class="btns__minus btns__cube">-</button>
                             <div class="btns__amount btns__cube">1 </div>
-                            <div class="btns__plus btns__cube">+</div>
+                            <button class="btns__plus btns__cube">+</button>
                         </div>
                         <div class="btns__price-of-bit"></div>
                     </div>

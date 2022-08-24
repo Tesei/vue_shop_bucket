@@ -95,6 +95,7 @@ export default {
   // .header__bucket-info
   &__bucket-info {
     margin: 19px 0 25px;
+    cursor: pointer;
   }
 }
 
@@ -154,7 +155,9 @@ export default {
 .footer {
 
   // .footer__content
-  &__content {}
+  &__content {
+    margin-bottom: 100px;
+  }
 
   // .footer__top
   &__top {

@@ -25,8 +25,8 @@
                 </div>
             </div>
             <div class="check__buttons-row">
-                <div class="btn check__btn check__btn_confirm">Оформить заказ</div>
-                <div class="btn check__btn check__btn_buy-in-one-click">Купить в 1 клик</div>
+                <button class="btn check__btn check__btn_confirm">Оформить заказ</button>
+                <button class="btn check__btn check__btn_buy-in-one-click">Купить в 1 клик</button>
             </div>
         </div>
     </div>

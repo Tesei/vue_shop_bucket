@@ -2,10 +2,9 @@
     <div class="slider-footer slider">
 
         <div class="slider__slide">
-            <!-- <swiper :pagination="{ type: 'fraction', }" :navigation="true" :slides-per-view="1" :space-between="30"
-                :modules="modules" @swiper="onSwiper" @slideChange="onSlideChange" :preload-images="false"> -->
-            <swiper class="vertical-swiper" :modules="modules" :slides-per-view="1" :space-between="18"
-                :mousewheel="true" @swiper="setVSwiperRef" @slide-change="updateVSwiperIndex">
+            <swiper :modules="modules" :slides-per-view="1" :space-between="30" :navigation="true"
+                :pagination="{ type: 'fraction', }" @swiper="onSwiper" @slideChange="onSlideChange"
+                :preload-images="false" :loop="true">
                 <swiper-slide>
                     <ul class="slider__items">
                         <li class="slider__item item-slide">
@@ -119,15 +118,13 @@
 
             </swiper>
             <div class="slider__usr-btns">
-                <button class="slider__usr-button slider__usr-button_prev nav-button-prev"
-                    :disabled="vSwiperIndex === 0" @click="prevVSwiperSlide"></button>
+                <button class="slider__usr-button slider__usr-button_prev"></button>
                 <div class="slider__sheets">
-                    <span class="slider__sheets-from">1</span>
+                    <span class="swiper-pagination-current slider__sheets-from">1</span>
                     /
-                    <span class="slider__sheets-all">6</span>
+                    <span class="swiper-pagination-total slider__sheets-all">6</span>
                 </div>
-                <button class="slider__usr-button slider__usr-button_next nav-button-next"
-                    :disabled="vSwiperIndex === 5 - 1" @click="nextVSwiperSlide"></button>
+                <button class="slider__usr-button slider__usr-button_next "></button>
             </div>
         </div>
     </div>
@@ -135,51 +132,46 @@
 </template>
 
 
-<script lang="ts">
+<script>
 // import Swiper core and required modules
-import SwiperClass, { Navigation, A11y, } from 'swiper';
+import { Navigation, Pagination } from 'swiper';
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue';
 
 
 // Import Swiper styles
 import 'swiper/scss';
-import 'swiper/scss/navigation';
-// import '@/styles/_swiper-btns.scss';
-// import "swiper/modules/navigation/navigation.min.css";
-// import "swiper/modules/pagination/pagination.min.css";
+// import 'swiper/css/pagination';
 
 export default {
     components: {
         Swiper,
-        SwiperSlide
+        SwiperSlide,
     },
     setup() {
+
         const onSwiper = (swiper) => {
             console.log(swiper);
-            // swiper.navigation.nextEl = '.swiper-button-next1';
-            // swiper.navigation.prevEl = '.swiper-button-prev1';
+
+            swiper.params.navigation.prevEl = document.querySelector('.slider__usr-button_prev');
+            swiper.params.navigation.nextEl = document.querySelector('.slider__usr-button_next');
+            swiper.navigation.init();
+            swiper.navigation.update();
+
+            swiper.params.pagination.el = document.querySelector('.slider__sheets');
+            swiper.pagination.init();
+            swiper.pagination.update();
+            document.querySelector('.swiper-pagination').style.display = "none";
         };
         const onSlideChange = () => {
             console.log('slide change');
         };
 
-
-        let vSwiperRef: SwiperClass | null = null
-        const setVSwiperRef = (swiper: SwiperClass) => {
-            vSwiperRef = swiper
-        }
-        const prevVSwiperSlide = () => setVSwiperRef?.slidePrev()
-        const nextVSwiperSlide = () => setVSwiperRef?.slideNext()
         return {
             onSwiper,
             onSlideChange,
-            modules: [Navigation, A11y],
-            setVSwiperRef,
-            // vSwiperIndex,
-            // updateVSwiperIndex,
-            prevVSwiperSlide,
-            nextVSwiperSlide
+            modules: [Navigation, Pagination],
+
         };
     },
     data() {
@@ -289,10 +281,7 @@ export default {
 
     // .slider__sheets-all
     &__sheets-all {}
-
 }
-
-
 
 .item-slide {
 

@@ -2,9 +2,7 @@
     <li class="goods__item">
         <div class="goods__row">
             <div class="goods__image-wrap _ibg">
-                <img :src="itemImage" :alt=item.shortName class="goods-image">
-                <!-- <img :src="require(`../images/${item.shortName.toLowerCase()}.png`)" :alt=item.shortName class="goods-image"> -->
-                <!-- <my-image-loader :imagePath="item.image" /> -->
+                <img :src="itemImage" :alt=item.shortName class="goods__image">
             </div>
             <div class="goods__text-about">
                 <h4 class="goods__title">{{ item.name }}</h4>
@@ -13,15 +11,18 @@
             </div>
             <div class="goods__amount-btns btns">
                 <div class="btns__row">
-                    <button class="btns__minus btns__cube" @click="$store.commit('degreeAmountItems')">-</button>
+                    <button class="btns__minus btns__cube"
+                        @click="$store.dispatch('degreaseAmountItems', item)">-</button>
                     <div class="btns__amount btns__cube">{{ item.amount }}</div>
-                    <button class="btns__plus btns__cube" @click="$store.commit('increaseAmountItems')">+</button>
+                    <button class="btns__plus btns__cube"
+                        @click="$store.dispatch('increaseAmountItems', item)">+</button>
                 </div>
-                <div class="btns__price-of-bit"></div>
+                <div class="btns__price-of-bit" v-if="item.amount > 1">{{ item.price }} ₽/шт. </div>
             </div>
             <h3 class="goods__summ">{{ item.summ }} ₽</h3>
             <div class="goods__delete">
-                <img src="@/images/icons/close.svg" alt="Удалить товар" class="goods__delete-image">
+                <img src="@/images/icons/close.svg" alt="Удалить товар" class="goods__delete-image"
+                    @click="$store.dispatch('deleteItem', item)">
             </div>
         </div>
     </li>
@@ -29,7 +30,7 @@
 </template>
 
 <script>
-// import image from item.image;
+// import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default {
     props: {
@@ -38,11 +39,6 @@ export default {
             required: true
         }
     },
-    data() {
-        return {
-            // image
-        };
-    },
     computed: {
         itemImage() {
             if (!this.item.shortName) {
@@ -50,7 +46,7 @@ export default {
             }
             const fileName = this.item.shortName.toLowerCase();
             return require(`../images/${fileName}.png`);
-        }
+        },
     }
 }
 </script>
@@ -183,8 +179,6 @@ export default {
         background-color: $bgn;
         cursor: pointer;
         transition: all 0.2s ease 0s;
-
-
     }
 
     // .btns__price-of-bit

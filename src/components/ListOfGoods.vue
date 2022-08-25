@@ -12,82 +12,6 @@
         <div class="main__goods-wrap" v-if="$store.state.goodsForBuy.length > 0">
             <ul class="main__goods-items goods">
                 <item-of-goods v-for="item in $store.state.goodsForBuy" :item="item" :key="item.id" />
-                <!-- <li class="goods__item">
-                    <div class="goods__row">
-                        <div class="goods__image-wrap _ibg">
-                            <img src="@/images/g2h.png" alt="G2H" class="goods-image">
-                        </div>
-                        <div class="goods__text-about">
-                            <h4 class="goods__title">Вытяжное устройство G2H</h4>
-                            <h6 class="goods__parametrs">12-72/168 м3/ч / гидрорегулируемый расход / от датчика
-                                присутствия</h6>
-                            <h6 class="goods__article">Артикул: G2H1065</h6>
-                        </div>
-                        <div class="goods__amount-btns btns">
-                            <div class="btns__row">
-                                <button class="btns__minus btns__cube">-</button>
-                                <div class="btns__amount btns__cube">1 </div>
-                                <button class="btns__plus btns__cube">+</button>
-                            </div>
-                            <div class="btns__price-of-bit"></div>
-                        </div>
-                        <h3 class="goods__summ">12 644 ₽</h3>
-                        <div class="goods__delete">
-                            <img src="@/images/icons/close.svg" alt="Удалить товар" class="goods__delete-image">
-                        </div>
-                    </div>
-                </li>
-                <li class="goods__item goods">
-                    <div class="goods__row">
-                        <div class="goods__image-wrap _ibg">
-                            <img src="@/images/bxc.png" alt="G2H" class="goods-image">
-                        </div>
-                        <div class="goods__text-about">
-                            <h4 class="goods__title">Вытяжное устройство G2H</h4>
-                            <h6 class="goods__parametrs">12-72/168 м3/ч / гидрорегулируемый расход / от датчика
-                                присутствия</h6>
-                            <h6 class="goods__article">Артикул: G2H1065</h6>
-                        </div>
-                        <div class="goods__amount-btns btns">
-                            <div class="btns__row">
-                                <button class="btns__minus btns__cube"
-                                    @click="$store.commit('degreeAmountItems')">-</button>
-                                <div class="btns__amount btns__cube">2 </div>
-                                <button class="btns__plus btns__cube">+</button>
-                            </div>
-                            <div class="btns__price-of-bit">12 644 ₽/шт.</div>
-                        </div>
-                        <h3 class="goods__summ">25 288 ₽</h3>
-                        <div class="goods__delete">
-                            <img src="@/images/icons/close.svg" alt="Удалить товар" class="goods__delete-image">
-                        </div>
-                    </div>
-                </li>
-                <li class="goods__item goods">
-                    <div class="goods__row">
-                        <div class="goods__image-wrap _ibg">
-                            <img src="@/images/ghn.png" alt="G2H" class="goods-image">
-                        </div>
-                        <div class="goods__text-about">
-                            <h4 class="goods__title">Вытяжное устройство G2H</h4>
-                            <h6 class="goods__parametrs">12-72/168 м3/ч / гидрорегулируемый расход / от датчика
-                                присутствия</h6>
-                            <h6 class="goods__article">Артикул: G2H1065</h6>
-                        </div>
-                        <div class="goods__amount-btns btns">
-                            <div class="btns__row">
-                                <button class="btns__minus btns__cube">-</button>
-                                <div class="btns__amount btns__cube">1 </div>
-                                <button class="btns__plus btns__cube">+</button>
-                            </div>
-                            <div class="btns__price-of-bit"></div>
-                        </div>
-                        <h3 class="goods__summ">12 644 ₽</h3>
-                        <div class="goods__delete">
-                            <img src="@/images/icons/close.svg" alt="Удалить товар" class="goods__delete-image">
-                        </div>
-                    </div>
-                </li> -->
             </ul>
             <div class="main__installation installation">
                 <div class="installation__row">
@@ -99,8 +23,7 @@
                     <div class="installation__text">
                         <h4 class="installation__title">Установка</h4>
                         <h5 class="installation__about">Отметьте, если Вам необходима консультация профессионала по
-                            монтажу
-                            выбранных товаров.</h5>
+                            монтажу выбранных товаров.</h5>
                     </div>
                 </div>
             </div>
@@ -116,6 +39,14 @@ import ItemOfGoods from "@/components/ItemOfGoods";
 export default {
     components: {
         ItemOfGoods
+    },
+    mounted() {
+        // $store.dispatch('calculateWholeSumm');
+    },
+    computed: {
+        calculateNewSumm($state, state) {
+            return $state.commit("setWholeSumm", state.goodsForBuy.reduce((previousValue, item) => item.summ + previousValue, 0))
+        },
     }
 }
 </script>

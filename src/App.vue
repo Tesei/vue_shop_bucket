@@ -14,25 +14,11 @@
         </div>
         <div class="footer__bottom">
           <slider-bottom />
-
         </div>
       </div>
     </footer>
-
   </div>
 
-
-
-
-  <h1>{{ $store.state.likes }}</h1>
-  <h1>{{ $store.getters.doubleLikes }}</h1>
-  <div>
-    <!-- Вызываем мутаци для изменения поля state командой .commit('название мутации')-->
-    <my-button @click="$store.commit('incrementLikes')">Лайк</my-button>
-    <my-button @click="$store.commit('decrementLikes')">Дизлайк</my-button>
-    <!-- Если несколько модулей и названия мутаций схожи, то хорош будет использовать в названии мутации её модуль -->
-    <!-- <my-button @click="$store.commit('post/decrementLikes')">Дизлайк</my-button> -->
-  </div>
 </template>
 
 <script>

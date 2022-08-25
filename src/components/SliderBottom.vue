@@ -27,7 +27,7 @@
                                     <span class="item-slide__price-eur_to">643.86 €</span>
                                 </h4>
                             </div>
-                            <button class="btn item-slide__btn">Подробнее</button>
+                            <my-button class="btn item-slide__btn">Подробнее</my-button>
                         </li>
                         <li class="slider__item item-slide">
                             <div class="item-slide__image-wrap _ibg">
@@ -49,7 +49,7 @@
                                     <span class="item-slide__price-eur_to">643.86 €</span>
                                 </h4>
                             </div>
-                            <button class="btn item-slide__btn">Подробнее</button>
+                            <my-button class="btn item-slide__btn">Подробнее</my-button>
                         </li>
                         <li class="slider__item item-slide">
                             <div class="item-slide__image-wrap _ibg">
@@ -70,7 +70,7 @@
                                     <span class="item-slide__price-eur_to">643.86 €</span>
                                 </h4>
                             </div>
-                            <button class="btn item-slide__btn">Подробнее</button>
+                            <my-button class="btn item-slide__btn">Подробнее</my-button>
                         </li>
                         <li class="slider__item item-slide">
                             <div class="item-slide__image-wrap _ibg">
@@ -91,7 +91,7 @@
                                     <span class="item-slide__price-eur_to">643.86 €</span>
                                 </h4>
                             </div>
-                            <button class="btn item-slide__btn">Подробнее</button>
+                            <my-button class="btn item-slide__btn">Подробнее</my-button>
                         </li>
                     </ul>
                 </swiper-slide>
@@ -111,7 +111,7 @@
                                 <div class="item-slide__price-rub">6 848 ₽ – 56 584 ₽</div>
                                 <h4 class="item-slide__price-eur">77.60 € – 643.86 €</h4>
                             </div>
-                            <button class="btn item-slide__btn">Подробнее</button>
+                            <my-button class="btn item-slide__btn">Подробнее</my-button>
                         </li>
                     </ul>
                 </swiper-slide>
@@ -160,7 +160,6 @@ export default {
             swiper.pagination.init();
             swiper.pagination.update();
             document.querySelector('.swiper-pagination').remove();
-            // document.querySelector('.swiper-pagination').style.display = "none";
         };
 
         return {

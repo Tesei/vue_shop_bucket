@@ -7,10 +7,10 @@
         </div>
         <div class="main__body">
             <div class="main__column main__column_left">
-                <myListOfGoods />
+                <list-of-goods />
             </div>
             <div class="main__column main__column_right">
-                <myFinallyCheck />
+                <finally-check />
             </div>
         </div>
     </div>
@@ -18,13 +18,13 @@
 
 
 <script>
-import myListOfGoods from "@/components/myListOfGoods.vue";
-import myFinallyCheck from "@/components/myFinallyCheck.vue";
+import ListOfGoods from "@/components/ListOfGoods.vue";
+import FinallyCheck from "@/components/FinallyCheck.vue";
 
 export default {
     components: {
-        myListOfGoods,
-        myFinallyCheck
+        ListOfGoods,
+        FinallyCheck
     }
 }
 </script>

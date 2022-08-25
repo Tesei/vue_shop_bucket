@@ -59,24 +59,3 @@ h6 {
 		object-fit: cover;
 	}
 }
-
-.btn{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	font-weight: 600;
-	font-size: 1.8rem;
-	margin-bottom: 12px;
-	border-radius: 4px;
-	line-height: 1.45;
-	padding: 14px 0;
-	color: $white;
-	background-color: $blue;
-	transition: all 0.2s ease 0s;
-	@media (min-width: $md2) {
-	&:hover {
-	transform: scale(1.02);
-	}
-	}
-}

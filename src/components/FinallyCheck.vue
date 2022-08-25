@@ -6,27 +6,29 @@
                 <div class="check__parametrs">
                     <div class="check__parametr-row row-1">
                         <h4 class="check__info">Сумма заказа</h4>
-                        <div class="check__parametr">50 576 ₽</div>
+                        <div class="check__parametr">{{ $store.state.wholeSumm }} ₽</div>
                     </div>
                     <div class="check__parametr-row row-2">
                         <h4 class="check__info">Количество</h4>
-                        <div class="check__parametr">4 шт</div>
+                        <div class="check__parametr">{{ $store.state.goodsForBuy.length }} шт</div>
                     </div>
                     <div class="check__parametr-row row-3">
                         <h4 class="check__info">Установка</h4>
-                        <div class="check__parametr">Нет</div>
+                        <div v-if="!($store.state.needInstalletion)" class="check__parametr">Нет</div>
+                        <div v-else class="check__parametr">Да</div>
                     </div>
                 </div>
             </div>
             <div class="check__text check__text_button">
                 <div class="check__summ-of-all-goods-row">
                     <h3 class="check__text-summ">Стоимость товаров</h3>
-                    <div class="check__summ-amount-rub">50 576 ₽</div>
+                    <div class="check__summ-amount-rub">{{ $store.state.wholeSumm }} ₽</div>
                 </div>
             </div>
             <div class="check__buttons-row">
-                <button class="btn check__btn check__btn_confirm">Оформить заказ</button>
-                <button class="btn check__btn check__btn_buy-in-one-click">Купить в 1 клик</button>
+                <my-button class="btn check__btn check__btn_confirm">Оформить заказ</my-button>
+                <my-button class="btn btn_color-reverse check__btn check__btn_buy-in-one-click">Купить в 1 клик
+                </my-button>
             </div>
         </div>
     </div>
@@ -136,12 +138,7 @@ export default {
         &_confirm {}
 
         // .check__btn_buy-in-one-click
-        &_buy-in-one-click {
-            padding: 12px 0;
-            color: $blue;
-            border: 1px solid $blue;
-            background-color: $white;
-        }
+        &_buy-in-one-click {}
     }
 }
 

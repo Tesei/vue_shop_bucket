@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper">
-    <myHeader />
+    <header-bucket />
 
     <main class="main">
       <div class="main__content _container">
-        <myBucket />
+        <finally-bucket />
       </div>
     </main>
     <footer class="footer">
@@ -13,7 +13,7 @@
           <h2 class="footer__title">Просмотренные товары</h2>
         </div>
         <div class="footer__bottom">
-          <mySlider />
+          <slider-bottom />
 
         </div>
       </div>
@@ -36,15 +36,15 @@
 </template>
 
 <script>
-import myBucket from "@/components/MyBucket.vue";
-import mySlider from "@/components/mySlider.vue";
-import myHeader from "@/components/myHeader.vue";
+import FinallyBucket from "@/components/FinallyBucket.vue";
+import SliderBottom from "@/components/SliderBottom.vue";
+import HeaderBucket from "@/components/HeaderBucket.vue";
 
 export default {
   components: {
-    myBucket,
-    mySlider,
-    myHeader
+    FinallyBucket,
+    SliderBottom,
+    HeaderBucket
   }
 }
 </script>

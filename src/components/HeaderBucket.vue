@@ -11,8 +11,9 @@
                             </div>
                             <div class="info-bucket__text">
                                 <h5 class="info-bucket__title">Ваша корзина</h5>
-                                <h6 class="info-bucket__amount-of-goods">3 товара</h6>
-                                <h6 class="info-bucket__summ-of-goods">50576 ₽</h6>
+                                <h6 class="info-bucket__amount-of-goods">{{ $store.state.goodsForBuy.length }} товара
+                                </h6>
+                                <h6 class="info-bucket__summ-of-goods">{{ $store.state.wholeSumm }} ₽</h6>
                             </div>
                         </div>
                     </div>

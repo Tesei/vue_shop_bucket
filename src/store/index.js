@@ -26,7 +26,7 @@ export default createStore({
     amountGoods: 0,
   }),
 
-  getters: {},
+  getters: {  },
   mutations: {
   setGoodsForBuy (state, goodsForBuy) {
       state.goodsForBuy = goodsForBuy;
@@ -43,7 +43,7 @@ export default createStore({
   increment ( state, index) {
       state.goodsForBuy[index].amount++;      
   },
-  dicrement ( state, index) {
+  decrement ( state, index) {
       if(state.goodsForBuy[index].amount > 0) state.goodsForBuy[index].amount--;
   },
   changeSummItem ( state, index) {     
@@ -61,7 +61,7 @@ export default createStore({
   },
   degreaseAmountItems ({state, commit}, someItem){      
     let indexItem = state.goodsForBuy.findIndex(arrItem => arrItem.id === someItem.id);    
-    commit("dicrement", indexItem);
+    commit("decrement", indexItem);
     commit("changeSummItem", indexItem);
     commit("setGoodsForBuy", state.goodsForBuy.filter(p => p.amount > 0));
     commit("setWholeSumm", state.goodsForBuy.reduce((previousValue, item) => item.summ + previousValue, 0));
@@ -83,6 +83,6 @@ export default createStore({
   },
   calculateAmountGoods ({state, commit}){
     commit("setAmountGoods", state.goodsForBuy.reduce((previousValue, item) => item.amount + previousValue, 0))
-  }
+  },  
   },  
 })

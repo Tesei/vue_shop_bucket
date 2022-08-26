@@ -77,7 +77,7 @@ export default {
 
     // main__column_right
     &__column_right {
-        flex: 1 1 33.333%;
+        flex: 0 0 425px;
         align-self: center;
     }
 }

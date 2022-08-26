@@ -6,7 +6,10 @@
                 <div class="check__parametrs">
                     <div class="check__parametr-row row-1">
                         <h4 class="check__info">Сумма заказа</h4>
-                        <div class="check__parametr">{{ $store.state.wholeSumm }} ₽</div>
+                        <div class="check__parametr">{{ $store.state.wholeSumm.toString().replace(/[^\d.,]/g,
+                                '').split('').reverse().join('').replace(/(.{3})/g, '$1 ').replace(/[,]/g,
+                                    '.').split('').reverse().join('')
+                        }} ₽</div>
                     </div>
                     <div class="check__parametr-row row-2">
                         <h4 class="check__info">Количество</h4>
@@ -22,7 +25,10 @@
             <div class="check__text check__text_button">
                 <div class="check__summ-of-all-goods-row">
                     <h3 class="check__text-summ">Стоимость товаров</h3>
-                    <div class="check__summ-amount-rub">{{ $store.state.wholeSumm }} ₽</div>
+                    <div class="check__summ-amount-rub">{{ $store.state.wholeSumm.toString().replace(/[^\d.,]/g,
+                            '').split('').reverse().join('').replace(/(.{3})/g, '$1 ').replace(/[,]/g,
+                                '.').split('').reverse().join('')
+                    }} ₽</div>
                 </div>
             </div>
             <div class="check__buttons-row">
@@ -38,7 +44,6 @@
 <script>
 
 export default {
-
 }
 </script>
 

@@ -17,9 +17,15 @@
                     <button class="btns__plus btns__cube"
                         @click="$store.dispatch('increaseAmountItems', item)">+</button>
                 </div>
-                <div class="btns__price-of-bit" v-if="item.amount > 1">{{ item.price }} ₽/шт. </div>
+                <div class="btns__price-of-bit" v-if="item.amount > 1">{{ item.price.toString().replace(/[^\d.,]/g,
+                        '').split('').reverse().join('').replace(/(.{3})/g, '$1 ').replace(/[,]/g,
+                            '.').split('').reverse().join('')
+                }} ₽/шт. </div>
             </div>
-            <h3 class="goods__summ">{{ item.summ }} ₽</h3>
+            <h3 class="goods__summ">{{ item.summ.toString().replace(/[^\d.,]/g,
+                    '').split('').reverse().join('').replace(/(.{3})/g, '$1 ').replace(/[,]/g,
+                        '.').split('').reverse().join('')
+            }} ₽</h3>
             <div class="goods__delete">
                 <img src="@/images/icons/close.svg" alt="Удалить товар" class="goods__delete-image"
                     @click="$store.dispatch('deleteItem', item)">
@@ -30,7 +36,6 @@
 </template>
 
 <script>
-// import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default {
     props: {
@@ -112,20 +117,42 @@ export default {
     // .goods__summ
     &__summ {
         margin-right: 35px;
-        flex: 1 0 auto;
+        flex: 0 0 100px;
         font-weight: 500;
         font-family: $font-family-accent;
+        text-align: right;
+        // justify-self: flex-end;
     }
 
     // .goods__delete
     &__delete {
         align-self: flex-start;
         cursor: pointer;
+        position: relative;
+        z-index: 2;
 
+        @media (min-width: $md2) {
+            &:hover {
+                &::after {
+                    content: '';
+                    position: absolute;
+                    width: 30px;
+                    height: 30px;
+                    top: -8px;
+                    left: -8.5px;
+                    background-color: lighten($gray-txt, 45%);
+                    z-index: 1;
+                    border-radius: 50%;
+                }
+            }
+        }
     }
 
     // .goods__delete-image
-    &__delete-image {}
+    &__delete-image {
+        position: relative;
+        z-index: 2;
+    }
 }
 
 .btns {

@@ -14,7 +14,11 @@
                                 <h6 class="info-bucket__amount-of-goods">{{ $store.state.amountGoods }}
                                     товара
                                 </h6>
-                                <h6 class="info-bucket__summ-of-goods">{{ $store.state.wholeSumm }} ₽</h6>
+                                <h6 class="info-bucket__summ-of-goods">{{
+                                        $store.state.wholeSumm.toString().replace(/[^\d.,]/g,
+                                            '').split('').reverse().join('').replace(/(.{3})/g, '$1 ').replace(/[,]/g,
+                                                '.').split('').reverse().join('')
+                                }} ₽</h6>
                             </div>
                         </div>
                     </div>

@@ -2,7 +2,7 @@ import { createStore } from 'vuex';
 
 export default createStore({
   state: ()=>({    
-    needInstalletion: false,
+    needInstallation: false,
     goodsForBuy: [
         {id: 1, name: "Вытяжное устройство G2H", about: "12-72/168 м3/ч / гидрорегулируемый расход / от датчика присутствия", article: "G2H1065", image: "g2h", shortName: "G2H", price:"12644", priceFrom: "6848", priceTo: "56584", amount: 1, summ: 12644},
         {id: 2, name: "Вытяжное устройство BXC", about: "Вытяжное устройство для механической системы вентиляции", article: "G2H1066", image: "@/images/bxc.png", shortName: "BXC", price:"13644", priceFrom: "6848", priceTo: "56584", amount: 1, summ: 13644},
@@ -25,8 +25,8 @@ export default createStore({
   setGoodsForBuy (state, goodsForBuy) {
       state.goodsForBuy = goodsForBuy;
   },
-  setNeedInstalletion (state, needInstalletion) {
-      state.needInstalletion = needInstalletion;
+  setneedInstallation (state, needInstallation) {
+      state.needInstallation = needInstallation;
   },
   setWholeSumm (state, wholeSumm) {
       state.wholeSumm = wholeSumm;

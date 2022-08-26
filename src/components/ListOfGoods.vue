@@ -12,12 +12,14 @@
 
         <div class="main__goods-wrap" v-if="$store.state.amountGoods">
             <ul class="main__goods-items goods">
-                <item-of-goods v-for="item in $store.state.goodsForBuy" :item="item" :key="item.id" />
+                <transition-group name="post-list">
+                    <item-of-goods v-for="item in $store.state.goodsForBuy" :item="item" :key="item.id" />
+                </transition-group>
             </ul>
             <div class="main__installation installation">
                 <div class="installation__row">
                     <input type="checkbox" class="installation__check" value="true"
-                        v-model="$store.state.needInstalletion">
+                        v-model="$store.state.needInstallation">
                     <div class="installation__image-wrap">
                         <img src="@/images/icons/tools.svg" alt="installation" class="installation__image">
                     </div>
@@ -133,11 +135,7 @@ export default {
     &__installation {}
 }
 
-
-
 .goods-image {}
-
-
 
 .installation {
 
@@ -190,5 +188,21 @@ export default {
         line-height: 1.5;
         font-size: 1.3rem;
     }
+}
+
+.post-list-item {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.post-list-enter-active,
+.post-list-leave-active {
+    transition: all .4s ease;
+}
+
+.post-list-enter-from,
+.post-list-leave-to {
+    opacity: 0;
+    transform: translateX(-130px);
 }
 </style>

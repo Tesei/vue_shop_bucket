@@ -121,7 +121,6 @@ export default {
         font-weight: 500;
         font-family: $font-family-accent;
         text-align: right;
-        // justify-self: flex-end;
     }
 
     // .goods__delete

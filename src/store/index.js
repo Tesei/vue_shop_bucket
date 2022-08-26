@@ -16,8 +16,6 @@ export default createStore({
     ],
     wholeSumm: 0,
     amountGoods: 0,
-    // partOfArrGoods: [],
-    // tempArr: [],
   }),
 
   getters: {  },
@@ -34,12 +32,6 @@ export default createStore({
   setAmountGoods (state, amountGoods) {     
     state.amountGoods = amountGoods;
   },
-  // setPartOfArrGoods (state, partOfArrGoods) {     
-  //   state.partOfArrGoods = partOfArrGoods;
-  // },
-  // setTempArr (state, tempArr) {     
-  //   state.tempArr = tempArr;
-  // },
   increment ( state, index) {
       state.goodsForBuy[index].amount++;      
   },

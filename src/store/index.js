@@ -13,17 +13,11 @@ export default createStore({
       {id: 2, name: "Вытяжное устройство BXC", about: "Вытяжное устройство для механической системы вентиляции", article: "G2H1066", image: "@/images/bxc.png", shortName: "BXC", price:"13644", priceFrom: "6848", priceTo: "56584", amount: 1, summ: 13644},
       {id: 3, name: "Вытяжное устройство GHN", about: "Вытяжное устройство с датчиком присутствия", article: "G2H1067", image: "@/images/ghn.png", shortName: "GHN", price:"14644", priceFrom: "6848", priceTo: "56584", amount: 1, summ: 14644},
       {id: 4, name: "Вытяжное устройство TDA", about: "Вытяжное устройство с датчиком присутствия", article: "G2H1068", image: "@/images/g2h.png", shortName: "TDA", price:"12644", priceFrom: "6848", priceTo: "56584", amount: 1, summ: 12644},
-      {id: 5, name: "Вытяжное устройство G2H", about: "12-72/168 м3/ч / гидрорегулируемый расход / от датчика присутствия", article: "G2H1065", image: "@/images/g2h.png", shortName: "G2H", price:"12644", priceFrom: "6848", priceTo: "56584", amount: 1, summ: 13644},
-      {id: 6, name: "Вытяжное устройство BXC", about: "Вытяжное устройство для механической системы вентиляции", article: "G2H1066", image: "@/images/bxc.png", shortName: "BXC", price:"13644", priceFrom: "6848", priceTo: "56584", amount: 1, summ: 14644},
-      {id: 7, name: "Вытяжное устройство GHN", about: "Вытяжное устройство с датчиком присутствия", article: "G2H1067", image: "@/images/ghn.png", shortName: "GHN", price:"14644", priceFrom: "6848", priceTo: "56584", amount: 1, summ: 12644},
-      {id: 8, name: "Вытяжное устройство TDA", about: "Вытяжное устройство с датчиком присутствия", article: "G2H1068", image: "@/images/g2h.png", shortName: "TDA", price:"12644", priceFrom: "6848", priceTo: "56584", amount: 1, summ: 13644},
-      {id: 9, name: "Вытяжное устройство G2H", about: "12-72/168 м3/ч / гидрорегулируемый расход / от датчика присутствия", article: "G2H1065", image: "@/images/g2h.png", shortName: "G2H", price:"12644", priceFrom: "6848", priceTo: "56584", amount: 1, summ: 14644},
-      {id: 10, name: "Вытяжное устройство BXC", about: "Вытяжное устройство для механической системы вентиляции", article: "G2H1066", image: "@/images/bxc.png", shortName: "BXC", price:"13644", priceFrom: "6848", priceTo: "56584", amount: 1, summ: 12644},
-      {id: 11, name: "Вытяжное устройство GHN", about: "Вытяжное устройство с датчиком присутствия", article: "G2H1067", image: "@/images/ghn.png", shortName: "GHN", price:"14644", priceFrom: "6848", priceTo: "56584", amount: 1, summ: 13644},
-      {id: 12, name: "Вытяжное устройство TDA", about: "Вытяжное устройство с датчиком присутствия", article: "G2H1068", image: "@/images/g2h.png", shortName: "TDA", price:"12644", priceFrom: "6848", priceTo: "56584", amount: 1, summ: 14644},
     ],
     wholeSumm: 0,
     amountGoods: 0,
+    // partOfArrGoods: [],
+    // tempArr: [],
   }),
 
   getters: {  },
@@ -40,6 +34,12 @@ export default createStore({
   setAmountGoods (state, amountGoods) {     
     state.amountGoods = amountGoods;
   },
+  // setPartOfArrGoods (state, partOfArrGoods) {     
+  //   state.partOfArrGoods = partOfArrGoods;
+  // },
+  // setTempArr (state, tempArr) {     
+  //   state.tempArr = tempArr;
+  // },
   increment ( state, index) {
       state.goodsForBuy[index].amount++;      
   },
@@ -83,6 +83,6 @@ export default createStore({
   },
   calculateAmountGoods ({state, commit}){
     commit("setAmountGoods", state.goodsForBuy.reduce((previousValue, item) => item.amount + previousValue, 0))
-  },  
+  },
   },  
 })

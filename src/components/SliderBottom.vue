@@ -3,120 +3,12 @@
 
         <div class="slider__slide">
             <swiper :modules="modules" :slides-per-view="1" :space-between="30" :navigation="true"
-                :pagination="{ type: 'fraction', }" @swiper="onSwiper" @slideChange="onSlideChange"
-                :preload-images="false">
-                <swiper-slide>
-                    <ul class="slider__items">
-                        <li class="slider__item item-slide">
-                            <div class="item-slide__image-wrap _ibg">
-                                <img src="@/images/bxc.png" alt="BXC" class="item-slide__image">
-                            </div>
-                            <div class="item-slide__text">
-                                <div class="item-slide__title">BXC</div>
-                                <h5 class="item-slide__text-about">Вытяжное устройство для механической системы
-                                    вентиляции
-                                </h5>
-                            </div>
-                            <div class="item-slide__price">
-                                <div class="item-slide__price-rub">
-                                    <span class="item-slide__price-rub_from">6 848 ₽</span> –
-                                    <span class="item-slide__price-rub_to">56 584 ₽</span>
-                                </div>
-                                <h4 class="item-slide__price-eur">
-                                    <span class="item-slide__price-eur_from">77.60 €</span> –
-                                    <span class="item-slide__price-eur_to">643.86 €</span>
-                                </h4>
-                            </div>
-                            <my-button class="btn item-slide__btn">Подробнее</my-button>
-                        </li>
-                        <li class="slider__item item-slide">
-                            <div class="item-slide__image-wrap _ibg">
-                                <img src="@/images/g2h.png" alt="G2H" class="item-slide__image">
-                            </div>
-                            <div class="item-slide__text">
-                                <div class="item-slide__title">G2H</div>
-                                <h5 class="item-slide__text-about">Многофункциональное вытяжное устройство для
-                                    естественной и гибридной вентиляции
-                                </h5>
-                            </div>
-                            <div class="item-slide__price">
-                                <div class="item-slide__price-rub">
-                                    <span class="item-slide__price-rub_from">6 848 ₽</span> –
-                                    <span class="item-slide__price-rub_to">56 584 ₽</span>
-                                </div>
-                                <h4 class="item-slide__price-eur">
-                                    <span class="item-slide__price-eur_from">77.60 €</span> –
-                                    <span class="item-slide__price-eur_to">643.86 €</span>
-                                </h4>
-                            </div>
-                            <my-button class="btn item-slide__btn">Подробнее</my-button>
-                        </li>
-                        <li class="slider__item item-slide">
-                            <div class="item-slide__image-wrap _ibg">
-                                <img src="@/images/ghn.png" alt="GHN" class="item-slide__image">
-                            </div>
-                            <div class="item-slide__text">
-                                <div class="item-slide__title">GHN</div>
-                                <h5 class="item-slide__text-about">Вытяжное устройство с датчиком присутствия
-                                </h5>
-                            </div>
-                            <div class="item-slide__price">
-                                <div class="item-slide__price-rub">
-                                    <span class="item-slide__price-rub_from">6 848 ₽</span> –
-                                    <span class="item-slide__price-rub_to">56 584 ₽</span>
-                                </div>
-                                <h4 class="item-slide__price-eur">
-                                    <span class="item-slide__price-eur_from">77.60 €</span> –
-                                    <span class="item-slide__price-eur_to">643.86 €</span>
-                                </h4>
-                            </div>
-                            <my-button class="btn item-slide__btn">Подробнее</my-button>
-                        </li>
-                        <li class="slider__item item-slide">
-                            <div class="item-slide__image-wrap _ibg">
-                                <img src="@/images/tda.png" alt="TDA" class="item-slide__image">
-                            </div>
-                            <div class="item-slide__text">
-                                <div class="item-slide__title">TDA</div>
-                                <h5 class="item-slide__text-about">Вытяжное устройство с датчиком присутствия
-                                </h5>
-                            </div>
-                            <div class="item-slide__price">
-                                <div class="item-slide__price-rub">
-                                    <span class="item-slide__price-rub_from">6 848 ₽</span> –
-                                    <span class="item-slide__price-rub_to">56 584 ₽</span>
-                                </div>
-                                <h4 class="item-slide__price-eur">
-                                    <span class="item-slide__price-eur_from">77.60 €</span> –
-                                    <span class="item-slide__price-eur_to">643.86 €</span>
-                                </h4>
-                            </div>
-                            <my-button class="btn item-slide__btn">Подробнее</my-button>
-                        </li>
-                    </ul>
+                :pagination="{ type: 'fraction', }" @swiper="onSwiper" :preload-images="false">
+                <swiper-slide v-for="slideBlock in 6" :key="slideBlock" class="slider__items">
+                    <item-slider v-for="item in $store.state.arrGoods" :key="item.id" :item="item" />
                 </swiper-slide>
-                <swiper-slide>
-                    <ul class="slider__items">
-                        <li class="slider__item item-slide">
-                            <div class="item-slide__image-wrap _ibg">
-                                <img src="@/images/bxc.png" alt="BXC" class="item-slide__image">
-                            </div>
-                            <div class="item-slide__text">
-                                <div class="item-slide__title">BXC</div>
-                                <h5 class="item-slide__text-about">Вытяжное устройство для механической системы
-                                    вентиляции
-                                </h5>
-                            </div>
-                            <div class="item-slide__price">
-                                <div class="item-slide__price-rub">6 848 ₽ – 56 584 ₽</div>
-                                <h4 class="item-slide__price-eur">77.60 € – 643.86 €</h4>
-                            </div>
-                            <my-button class="btn item-slide__btn">Подробнее</my-button>
-                        </li>
-                    </ul>
-                </swiper-slide>
-
             </swiper>
+
             <div class="slider__usr-btns">
                 <button class="slider__usr-button slider__usr-button_prev"></button>
                 <div class="slider__sheets">
@@ -133,12 +25,12 @@
 
 
 <script>
+import ItemSlider from "@/components/ItemSlider";
+
 // import Swiper core and required modules
 import { Navigation, Pagination } from 'swiper';
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue';
-
-
 // Import Swiper styles
 import 'swiper/scss';
 
@@ -146,6 +38,7 @@ export default {
     components: {
         Swiper,
         SwiperSlide,
+        ItemSlider
     },
     setup() {
 
@@ -185,19 +78,6 @@ export default {
     &__items {
         display: flex;
         justify-content: space-between;
-        margin: 0 -10px;
-    }
-
-    // .slider__item
-    &__item {
-        flex: 0 1 25%;
-        margin: 0 10px;
-        padding: 25px;
-        background-color: $bgn;
-        border-radius: 4px;
-        display: flex;
-        flex-direction: column;
-        min-height: 100%;
     }
 
     // .slider__usr-btns
@@ -270,59 +150,6 @@ export default {
 
     // .slider__sheets-all
     &__sheets-all {}
-}
-
-.item-slide {
-
-    // .item-slide__image-wrap
-    &__image-wrap {
-        margin: 10px;
-        padding-bottom: 100%;
-    }
-
-    // .item-slide__image
-    &__image {}
-
-    // .item-slide__text
-    &__text {
-        flex: 1 1 auto;
-        margin-bottom: 35px;
-    }
-
-    // .item-slide__title
-    &__title {
-        font-weight: 700;
-        font-size: 2.2rem;
-        line-height: 1.2;
-        margin-bottom: 10px;
-    }
-
-    // .item-slide__text-about
-    &__text-about {}
-
-    // .item-slide__price-rub
-    &__price {
-        margin-bottom: 20px;
-    }
-
-    // .item-slide__price-rub
-    &__price-rub {
-        font-weight: 500;
-        font-size: 2.2rem;
-        line-height: 1.3;
-        margin-bottom: 3px;
-        font-family: $font-family-accent;
-    }
-
-    // .item-slide__price-eur
-    &__price-eur {
-        color: $gray-txt;
-    }
-
-    // .item-slide__btn
-    &__btn {
-        font-size: 1.6rem;
-    }
 }
 
 .swiper-button-disabled {

@@ -3,13 +3,14 @@
         <div class="main__text">
             <div class="main__text-left-side">
                 <h1 class="main__title">Ваша корзина</h1>
-                <h4 class="main__amount-of-goods"> {{ $store.state.goodsForBuy.length }} товара</h4>
+                <h4 class="main__amount-of-goods"> {{ $store.state.amountGoods }} товара</h4>
             </div>
             <div class="main__text-right-side">
-                <h5 class="main__clear-bucket" @click="$store.commit('clearArrItems')">Очистить корзину</h5>
+                <h5 class="main__clear-bucket" @click="$store.dispatch('clearBucket')">Очистить корзину</h5>
             </div>
         </div>
-        <div class="main__goods-wrap" v-if="$store.state.goodsForBuy.length > 0">
+
+        <div class="main__goods-wrap" v-if="$store.state.amountGoods">
             <ul class="main__goods-items goods">
                 <item-of-goods v-for="item in $store.state.goodsForBuy" :item="item" :key="item.id" />
             </ul>
@@ -41,13 +42,10 @@ export default {
         ItemOfGoods
     },
     mounted() {
-        // $store.dispatch('calculateWholeSumm');
+        this.$store.dispatch('calculateWholeSumm');
+        this.$store.dispatch('calculateAmountGoods');
+
     },
-    computed: {
-        calculateNewSumm($state, state) {
-            return $state.commit("setWholeSumm", state.goodsForBuy.reduce((previousValue, item) => item.summ + previousValue, 0))
-        },
-    }
 }
 </script>
 

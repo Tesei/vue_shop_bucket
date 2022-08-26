@@ -10,7 +10,7 @@
                     </div>
                     <div class="check__parametr-row row-2">
                         <h4 class="check__info">Количество</h4>
-                        <div class="check__parametr">{{ $store.state.goodsForBuy.length }} шт</div>
+                        <div class="check__parametr">{{ $store.state.amountGoods }} шт</div>
                     </div>
                     <div class="check__parametr-row row-3">
                         <h4 class="check__info">Установка</h4>

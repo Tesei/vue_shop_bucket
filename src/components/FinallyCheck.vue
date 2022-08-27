@@ -203,10 +203,14 @@ export default {
     &__btn {
 
         // .check__btn_confirm
-        &_confirm {}
+        &_confirm {
+            margin-bottom: 12px;
+        }
 
         // .check__btn_buy-in-one-click
-        &_buy-in-one-click {}
+        &_buy-in-one-click {
+            margin-bottom: 0;
+        }
     }
 }
 

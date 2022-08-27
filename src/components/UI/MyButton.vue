@@ -22,7 +22,6 @@ export default {
     width: 100%;
     font-weight: 600;
     font-size: 1.8rem;
-    margin-bottom: 12px;
     border-radius: 4px;
     line-height: 1.45;
     padding: 14px 0;

@@ -67,17 +67,23 @@ export default createStore({
     commit("setGoodsForBuy", state.goodsForBuy.filter(p => p !== item));
     commit("setWholeSumm", state.goodsForBuy.reduce((previousValue, item) => item.summ + previousValue, 0));
     commit("setAmountGoods", state.goodsForBuy.reduce((previousValue, item) => item.amount + previousValue, 0));
+    if(state.goodsForBuy.length === 0) commit("setneedInstallation", false);
   },
   clearBucket ({state, commit}){
     commit("setGoodsForBuy", []);
     commit("setWholeSumm", state.goodsForBuy.reduce((previousValue, item) => item.summ + previousValue, 0));
     commit("setAmountGoods", state.goodsForBuy.reduce((previousValue, item) => item.amount + previousValue, 0));
+    commit("setneedInstallation", false);
   },
   calculateAmountGoods ({state, commit}){
     commit("setAmountGoods", state.goodsForBuy.reduce((previousValue, item) => item.amount + previousValue, 0));
   },
   addIteminList ({state, commit}, item){
-    if(!state.goodsForBuy.find(someItem => someItem.id === item.id)) commit("setAmountGoods", state.goodsForBuy.push(item));
+    if(!state.goodsForBuy.find(someItem => someItem.id === item.id)) {
+      commit("setAmountGoods", state.goodsForBuy.push(item));
+      commit("setWholeSumm", state.goodsForBuy.reduce((previousValue, item) => item.summ + previousValue, 0));
+      commit("setAmountGoods", state.goodsForBuy.reduce((previousValue, item) => item.amount + previousValue, 0));
+    }
     else this.dispatch("increaseAmountItems", item);
   },
   },  

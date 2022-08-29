@@ -74,7 +74,11 @@ export default createStore({
     commit("setAmountGoods", state.goodsForBuy.reduce((previousValue, item) => item.amount + previousValue, 0));
   },
   calculateAmountGoods ({state, commit}){
-    commit("setAmountGoods", state.goodsForBuy.reduce((previousValue, item) => item.amount + previousValue, 0))
+    commit("setAmountGoods", state.goodsForBuy.reduce((previousValue, item) => item.amount + previousValue, 0));
+  },
+  addIteminList ({state, commit}, item){
+    if(!state.goodsForBuy.find(someItem => someItem.id === item.id)) commit("setAmountGoods", state.goodsForBuy.push(item));
+    else this.dispatch("increaseAmountItems", item);
   },
   },  
 })

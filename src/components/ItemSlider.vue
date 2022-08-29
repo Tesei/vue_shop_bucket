@@ -23,7 +23,8 @@
                 <span class="item-slide__price-eur_to">643.86 €</span>
             </h4>
         </div>
-        <my-button class="btn item-slide__btn">Подробнее</my-button>
+        <my-button class="btn item-slide__btn" @click="$store.dispatch('addIteminList', item)">Добавить в корзину
+        </my-button>
     </li>
 </template>
 

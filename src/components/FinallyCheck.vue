@@ -8,14 +8,11 @@
                     <div class="check__parametrs">
                         <div class="check__parametr-row row-1">
                             <h4 class="check__info">Сумма заказа</h4>
-                            <div class="check__parametr">{{ $store.state.wholeSumm.toString().replace(/[^\d.,]/g,
-                                    '').split('').reverse().join('').replace(/(.{3})/g, '$1 ').replace(/[,]/g,
-                                        '.').split('').reverse().join('')
-                            }} ₽</div>
+                            <div class="check__parametr">{{  summWithSpace  }} ₽</div>
                         </div>
                         <div class="check__parametr-row row-2">
                             <h4 class="check__info">Количество</h4>
-                            <div class="check__parametr">{{ $store.state.amountGoods }} шт</div>
+                            <div class="check__parametr">{{  $store.state.amountGoods  }} шт</div>
                         </div>
                         <div class="check__parametr-row row-3">
                             <h4 class="check__info">Установка</h4>
@@ -27,10 +24,7 @@
                 <div class="check__text check__text_button">
                     <div class="check__summ-of-all-goods-row">
                         <h3 class="check__text-summ">Стоимость товаров</h3>
-                        <div class="check__summ-amount-rub">{{ $store.state.wholeSumm.toString().replace(/[^\d.,]/g,
-                                '').split('').reverse().join('').replace(/(.{3})/g, '$1 ').replace(/[,]/g,
-                                    '.').split('').reverse().join('')
-                        }} ₽</div>
+                        <div class="check__summ-amount-rub">{{  summWithSpace  }} ₽</div>
                     </div>
                 </div>
                 <div class="check__buttons-row" v-if="!dataSending">
@@ -74,7 +68,7 @@ export default {
             errors: [],    // массив для записи ошибок
             dataSending: false,
             orderSuccess: false,
-            orderError: false
+            orderError: false,
         }
     },
 
@@ -96,6 +90,16 @@ export default {
                     this.orderError = true;
                 })
         }
+    },
+    // Рассчитываем сумму заказа в хранилище, перед загрузкой страницы
+    beforeCreate() {
+        this.$store.dispatch("calculateWholeSumm");
+    },
+    computed: {
+        summWithSpace() {
+            return this.$store.state.wholeSumm.toLocaleString("ru-RU");
+        }
+
     }
 }
 </script>

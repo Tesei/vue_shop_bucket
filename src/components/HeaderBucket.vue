@@ -11,14 +11,10 @@
                             </div>
                             <div class="info-bucket__text">
                                 <h5 class="info-bucket__title">Ваша корзина</h5>
-                                <h6 class="info-bucket__amount-of-goods">{{ $store.state.amountGoods }}
+                                <h6 class="info-bucket__amount-of-goods">{{  $store.state.amountGoods  }}
                                     товара
                                 </h6>
-                                <h6 class="info-bucket__summ-of-goods">{{
-                                        $store.state.wholeSumm.toString().replace(/[^\d.,]/g,
-                                            '').split('').reverse().join('').replace(/(.{3})/g, '$1 ').replace(/[,]/g,
-                                                '.').split('').reverse().join('')
-                                }} ₽</h6>
+                                <h6 class="info-bucket__summ-of-goods">{{  summWithSpace  }} ₽</h6>
                             </div>
                         </div>
                     </div>
@@ -31,7 +27,11 @@
 <script>
 
 export default {
-
+    computed: {
+        summWithSpace() {
+            return this.$store.state.wholeSumm.toLocaleString("ru-RU");
+        }
+    }
 }
 </script>
 

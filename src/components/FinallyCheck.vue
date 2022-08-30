@@ -99,7 +99,6 @@ export default {
         summWithSpace() {
             return this.$store.state.wholeSumm.toLocaleString("ru-RU");
         }
-
     }
 }
 </script>

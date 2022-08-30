@@ -4,19 +4,13 @@
             <img :src="itemImage" :alt=item.shortName class="item-slide__image">
         </div>
         <div class="item-slide__text">
-            <div class="item-slide__title">{{ item.name }}</div>
-            <h5 class="item-slide__text-about">{{ item.about }} </h5>
+            <div class="item-slide__title">{{  item.name  }}</div>
+            <h5 class="item-slide__text-about">{{  item.about  }} </h5>
         </div>
         <div class="item-slide__price">
             <div class="item-slide__price-rub">
-                <span class="item-slide__price-rub_from">{{ item.priceFrom.toString().replace(/[^\d.,]/g,
-                        '').split('').reverse().join('').replace(/(.{3})/g, '$1 ').replace(/[,]/g,
-                            '.').split('').reverse().join('')
-                }} ₽</span> –
-                <span class="item-slide__price-rub_to">{{ item.priceTo.toString().replace(/[^\d.,]/g,
-                        '').split('').reverse().join('').replace(/(.{3})/g, '$1 ').replace(/[,]/g,
-                            '.').split('').reverse().join('')
-                }} ₽</span>
+                <span class="item-slide__price-rub_from">{{  itemPriceFromWithSpace  }} ₽</span> –
+                <span class="item-slide__price-rub_to">{{  itemPriceToWithSpace  }} ₽</span>
             </div>
             <h4 class="item-slide__price-eur">
                 <span class="item-slide__price-eur_from">77.60 €</span> –
@@ -46,7 +40,15 @@ export default {
             const fileName = this.item.shortName.toLowerCase();
             return require(`../images/${fileName}.png`);
         },
-    }
+        itemPriceFromWithSpace() {
+            return this.item.priceFrom.toString().replace(/[^\d.,]/g, '').split('').reverse().join('').replace(/(.{3})/g, '$1 ').replace(/[,]/g, '.').split('').reverse().join('');
+        },
+        itemPriceToWithSpace() {
+            return this.item.priceTo.toString().replace(/[^\d.,]/g,
+                '').split('').reverse().join('').replace(/(.{3})/g, '$1 ').replace(/[,]/g,
+                    '.').split('').reverse().join('');
+        }
+    },
 }
 </script>
 

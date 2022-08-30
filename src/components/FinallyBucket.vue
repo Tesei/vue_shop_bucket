@@ -1,3 +1,4 @@
+
 <template>
     <div class="main__wrap">
         <div class="main__top">
@@ -6,12 +7,8 @@
             </h6>
         </div>
         <div class="main__body">
-            <div class="main__column main__column_left">
-                <list-of-goods />
-            </div>
-            <div class="main__column main__column_right">
-                <finally-check />
-            </div>
+            <list-of-goods class="main__column main__column_left" />
+            <finally-check class="main__column main__column_right" />
         </div>
     </div>
 </template>

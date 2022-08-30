@@ -10,11 +10,11 @@
                                 <img src="@/images/icons/bucket3.svg" alt="корзина товаров" class="info-bucket__image">
                             </div>
                             <div class="info-bucket__text">
-                                <h5 class="info-bucket__title">Ваша корзина</h5>
-                                <h6 class="info-bucket__amount-of-goods">{{  $store.state.amountGoods  }}
+                                <span class="info-bucket__title">Ваша корзина</span>
+                                <span class="info-bucket__amount-of-goods">{{  $store.state.amountGoods  }}
                                     товара
-                                </h6>
-                                <h6 class="info-bucket__summ-of-goods">{{  summWithSpace  }} ₽</h6>
+                                </span>
+                                <span class="info-bucket__summ-of-goods text">{{  summWithSpace  }} ₽</span>
                             </div>
                         </div>
                     </div>
@@ -94,6 +94,7 @@ export default {
     &__title {
         display: block;
         line-height: 1.2;
+        font-size: 1.4rem;
     }
 
     // .info-bucket__amount-of-goods
@@ -101,11 +102,12 @@ export default {
         color: $gray-txt;
         display: block;
         line-height: 1.2;
+        font-size: 1.2rem;
     }
 
     // .info-bucket__summ-of-goods
     &__summ-of-goods {
-        display: block;
+        font-size: 1.2rem;
     }
 }
 </style>

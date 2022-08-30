@@ -5,17 +5,17 @@
         </div>
         <div class="item-slide__text">
             <div class="item-slide__title">{{  item.name  }}</div>
-            <h5 class="item-slide__text-about">{{  item.about  }} </h5>
+            <span class="item-slide__text-about text">{{  item.about  }} </span>
         </div>
         <div class="item-slide__price">
             <div class="item-slide__price-rub">
                 <span class="item-slide__price-rub_from">{{  itemPriceFromWithSpace  }} ₽</span> –
                 <span class="item-slide__price-rub_to">{{  itemPriceToWithSpace  }} ₽</span>
             </div>
-            <h4 class="item-slide__price-eur">
+            <div class="item-slide__price-eur">
                 <span class="item-slide__price-eur_from">77.60 €</span> –
                 <span class="item-slide__price-eur_to">643.86 €</span>
-            </h4>
+            </div>
         </div>
         <my-button class="btn item-slide__btn" @click="$store.dispatch('addIteminList', item)">Добавить в корзину
         </my-button>
@@ -80,7 +80,7 @@ export default {
     // .item-slide__text
     &__text {
         flex: 1 1 auto;
-        margin-bottom: 35px;
+        margin-bottom: 40px;
     }
 
     // .item-slide__title
@@ -92,7 +92,10 @@ export default {
     }
 
     // .item-slide__text-about
-    &__text-about {}
+    &__text-about {
+        font-size: 1.4rem;
+        line-height: 1.5;
+    }
 
     // .item-slide__price-rub
     &__price {
@@ -111,6 +114,7 @@ export default {
     // .item-slide__price-eur
     &__price-eur {
         color: $gray-txt;
+        font-size: 1.6rem;
     }
 
     // .item-slide__btn

@@ -5,25 +5,25 @@
             <div class="check__data">
                 <div class="check__text check__text_top">
                     <h2 class="check__title">Итого</h2>
-                    <div class="check__parametrs">
-                        <div class="check__parametr-row row-1">
-                            <h4 class="check__info">Сумма заказа</h4>
+                    <ul class="check__parametrs">
+                        <li class="check__parametr-row row-1">
+                            <span class="check__info text">Сумма заказа</span>
                             <div class="check__parametr">{{  summWithSpace  }} ₽</div>
-                        </div>
-                        <div class="check__parametr-row row-2">
-                            <h4 class="check__info">Количество</h4>
+                        </li>
+                        <li class="check__parametr-row row-2">
+                            <span class="check__info text">Количество</span>
                             <div class="check__parametr">{{  $store.state.amountGoods  }} шт</div>
-                        </div>
-                        <div class="check__parametr-row row-3">
-                            <h4 class="check__info">Установка</h4>
+                        </li>
+                        <li class="check__parametr-row row-3">
+                            <span class="check__info text">Установка</span>
                             <div v-if="!($store.state.needInstallation)" class="check__parametr">Нет</div>
                             <div v-else class="check__parametr">Да</div>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
                 <div class="check__text check__text_button">
                     <div class="check__summ-of-all-goods-row">
-                        <h3 class="check__text-summ">Стоимость товаров</h3>
+                        <span class="check__text-summ text">Стоимость товаров</span>
                         <div class="check__summ-amount-rub">{{  summWithSpace  }} ₽</div>
                     </div>
                 </div>
@@ -41,9 +41,9 @@
                         </div>
                     </div>
                 </div>
-                <h3 class="check__data-send-message" v-if="orderSuccess">Заказ софрмирован!</h3>
-                <h3 class="check__data-send-message" v-if="orderError">Во время отправки данных произошёл сбой!
-                    Попробуйте оформить заказ заново.</h3>
+                <span class="check__data-send-message text" v-if="orderSuccess">Заказ софрмирован!</span>
+                <span class="check__data-send-message text" v-if="orderError">Во время отправки данных произошёл сбой!
+                    Попробуйте оформить заказ заново.</span>
             </div>
 
 
@@ -60,11 +60,6 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            orderBody: {   // данные для отправки(позже они преобразуются в json)
-                summOfOrder: this.$store.state.wholeSumm,
-                needInstallation: this.$store.state.needInstallation,
-                listOfOrder: this.$store.state.goodsForBuy,
-            },
             errors: [],    // массив для записи ошибок
             dataSending: false,
             orderSuccess: false,
@@ -98,7 +93,14 @@ export default {
     computed: {
         summWithSpace() {
             return this.$store.state.wholeSumm.toLocaleString("ru-RU");
-        }
+        },
+        orderBody() {   // данные для отправки(позже они преобразуются в json)
+            return {
+                summOfOrder: this.$store.state.wholeSumm,
+                needInstallation: this.$store.state.needInstallation,
+                listOfOrder: this.$store.state.goodsForBuy,
+            }
+        },
     }
 }
 </script>
@@ -169,7 +171,9 @@ export default {
     }
 
     // .check__info
-    &__info {}
+    &__info {
+        font-size: 1.6rem;
+    }
 
     // .check__parametr
     &__parametr {}
@@ -188,6 +192,7 @@ export default {
         height: 100%;
         display: block;
         margin-bottom: 4px;
+        font-size: 1.8rem;
     }
 
     // .check__summ-amount-rub
@@ -214,6 +219,11 @@ export default {
         &_buy-in-one-click {
             margin-bottom: 0;
         }
+    }
+
+    // .check__data-send-message
+    &__data-send-message {
+        font-size: 1.8rem;
     }
 }
 

@@ -17,15 +17,15 @@ $md4: 479.98px;
 ._container {
 	max-width: $maxWidthContainer + px;
 	margin: 0 auto;
-	padding: 0 80px;
+	padding: 0 40px;
 
 	@media (max-width: $md1) {
 		max-width: 1440px;
-		padding: 0 60px;
+		padding: 0 20px;
 	}
 	@media (max-width: $md2) {
 		max-width: 750px;
-		padding: 0 35px;
+		padding: 0 10px;
 	}
 	@media (max-width: $md3) {
 		max-width: none;

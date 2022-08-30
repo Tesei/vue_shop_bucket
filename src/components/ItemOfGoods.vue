@@ -4,28 +4,22 @@
             <div class="goods__image-wrap _ibg">
                 <img :src="itemImage" :alt=item.shortName class="goods__image">
             </div>
-            <div class="goods__text-about">
-                <h4 class="goods__title">{{ item.name }}</h4>
-                <h6 class="goods__parametrs">{{ item.about }}</h6>
-                <h6 class="goods__article">Артикул: {{ item.article }}</h6>
-            </div>
+            <ul class="goods__text-about">
+                <li class="goods__title text">{{  item.name  }}</li>
+                <li class="goods__parametrs text">{{  item.about  }}</li>
+                <li class="goods__article text">Артикул: {{  item.article  }}</li>
+            </ul>
             <div class="goods__amount-btns btns">
                 <div class="btns__row">
                     <button class="btns__minus btns__cube"
                         @click="$store.dispatch('degreaseAmountItems', item)">-</button>
-                    <div class="btns__amount btns__cube">{{ item.amount }}</div>
+                    <div class="btns__amount btns__cube">{{  item.amount  }}</div>
                     <button class="btns__plus btns__cube"
                         @click="$store.dispatch('increaseAmountItems', item)">+</button>
                 </div>
-                <div class="btns__price-of-bit" v-if="item.amount > 1">{{ item.price.toString().replace(/[^\d.,]/g,
-                        '').split('').reverse().join('').replace(/(.{3})/g, '$1 ').replace(/[,]/g,
-                            '.').split('').reverse().join('')
-                }} ₽/шт. </div>
+                <div class="btns__price-of-bit" v-if="item.amount > 1">{{  priceItemWithSpace  }} ₽/шт. </div>
             </div>
-            <h3 class="goods__summ">{{ item.summ.toString().replace(/[^\d.,]/g,
-                    '').split('').reverse().join('').replace(/(.{3})/g, '$1 ').replace(/[,]/g,
-                        '.').split('').reverse().join('')
-            }} ₽</h3>
+            <h3 class="goods__summ">{{  summItemWithSpace  }} ₽</h3>
             <div class="goods__delete">
                 <img src="@/images/icons/close.svg" alt="Удалить товар" class="goods__delete-image"
                     @click="$store.dispatch('deleteItem', item)">
@@ -51,6 +45,14 @@ export default {
             }
             const fileName = this.item.shortName.toLowerCase();
             return require(`../images/${fileName}.png`);
+        },
+        summItemWithSpace() {
+            return this.item.summ.toLocaleString("ru-RU");
+        },
+        priceItemWithSpace() {
+            return this.item.price.toString().replace(/[^\d.,]/g,
+                '').split('').reverse().join('').replace(/(.{3})/g, '$1 ').replace(/[,]/g,
+                    '.').split('').reverse().join('');
         },
     }
 }
@@ -78,6 +80,7 @@ export default {
         padding: 20px 0 20px;
         align-items: center;
         justify-content: space-between;
+        width: 100%;
     }
 
     // .goods__image-wrap
@@ -90,27 +93,32 @@ export default {
 
     // .goods__text-about
     &__text-about {
-        margin-right: 9.5%;
+        margin-right: 10%;
+        flex: 0 1 350px;
     }
 
     // .goods__title
     &__title {
         margin-bottom: 5px;
+        font-size: 1.6rem;
     }
 
     // .goods__parametrs
     &__parametrs {
         margin-bottom: 5px;
+        font-size: 1.2rem;
     }
 
     // .goods__article
     &__article {
         color: $gray-txt;
+        font-size: 1.2rem;
     }
 
     // .goods__amount-btns
     &__amount-btns {
-        margin-right: 9.5%;
+        flex: 1 1 auto;
+        margin-right: 6%;
         position: relative;
     }
 

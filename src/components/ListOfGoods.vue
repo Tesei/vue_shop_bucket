@@ -3,10 +3,10 @@
         <div class="main__text">
             <div class="main__text-left-side">
                 <h1 class="main__title">Ваша корзина</h1>
-                <h4 class="main__amount-of-goods"> {{ $store.state.amountGoods }} товара</h4>
+                <span class="main__amount-of-goods"> {{  $store.state.amountGoods  }} товара</span>
             </div>
             <div class="main__text-right-side">
-                <h5 class="main__clear-bucket" @click="$store.dispatch('clearBucket')">Очистить корзину</h5>
+                <button class="main__clear-bucket" @click="$store.dispatch('clearBucket')">Очистить корзину</button>
             </div>
         </div>
 
@@ -24,14 +24,14 @@
                         <img src="@/images/icons/tools.svg" alt="installation" class="installation__image">
                     </div>
                     <div class="installation__text">
-                        <h4 class="installation__title">Установка</h4>
-                        <h5 class="installation__about">Отметьте, если Вам необходима консультация профессионала по
-                            монтажу выбранных товаров.</h5>
+                        <span class="installation__title">Установка</span>
+                        <span class="installation__about">Отметьте, если Вам необходима консультация профессионала по
+                            монтажу выбранных товаров.</span>
                     </div>
                 </div>
             </div>
         </div>
-        <h3 class="main__goods-wrap-without-goods" v-else>В корзине нет товаров</h3>
+        <h2 class="main__goods-wrap-without-goods" v-else>В корзине нет товаров</h2>
     </div>
 </template>
 
@@ -77,7 +77,6 @@ export default {
     &__text-left-side {
         display: flex;
         align-items: flex-end;
-
     }
 
     // .main__title
@@ -86,13 +85,14 @@ export default {
         font-size: 4rem;
         line-height: 1.2;
         margin-right: 27px;
-        margin-bottom: -3px;
+        margin-bottom: -7px;
         letter-spacing: .5px;
     }
 
     // .main__amount-of-goods
     &__amount-of-goods {
         color: $gray-txt;
+        font-size: 1.6rem;
     }
 
     // .main__text-right-side
@@ -133,6 +133,16 @@ export default {
 
     // .main__installation
     &__installation {}
+
+    // .main__goods-wrap
+    &__goods-wrap {
+        width: 100%;
+    }
+
+    // main__goods-wrap-without-goods
+    &__goods-wrap-without-goods {
+        font-size: 2rem;
+    }
 }
 
 .goods-image {}
@@ -174,12 +184,16 @@ export default {
     }
 
     // .installation__text
-    &__text {}
+    &__text {
+        align-self: flex-start;
+    }
 
     // .installation__title
     &__title {
         font-weight: 600;
-        margin-bottom: 2px;
+        margin: 14px 0 2px;
+        font-size: 1.6rem;
+        display: block;
     }
 
     // .installation__about

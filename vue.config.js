@@ -18,20 +18,15 @@ module.exports = {
             }
           ]
         },
-
-        // {
-        //   test: /\.tsx?$/,
-        //   loader: 'ts-loader',
-        //   options: {
-        //     appendTsSuffixTo: [/\.vue$/],
-        //   },
-        //   exclude: /node_modules/,
-        // },
-        // {
-        //   test: /\.vue$/,
-        //   loader: 'vue-loader',
-        // }
       ]
+    }
+  },
+  // Подключение общих стилей для всех компонентов:
+  css: {
+    loaderOptions: {
+      sass: {
+        additionalData: `@import "@/styles/index.scss";`
+      }
     }
   }
 }

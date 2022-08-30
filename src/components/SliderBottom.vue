@@ -65,8 +65,6 @@ export default {
 
 
 <style scoped lang="scss">
-@import '@/styles/index.scss';
-
 .slider {
 
     // .slider__slide

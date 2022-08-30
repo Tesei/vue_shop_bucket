@@ -74,8 +74,7 @@ export default {
             axios.post(`http://localhost:8081`, {
                 body: this.orderBody
             })
-                // eslint-disable-next-line
-                .then(response => {
+                .then(() => {
                     this.dataSending = false;
                     this.orderSuccess = true;
                 })
@@ -107,8 +106,6 @@ export default {
 
 
 <style scoped lang="scss">
-@import '@/styles/index.scss';
-
 .main {
 
     // .main__finally-check

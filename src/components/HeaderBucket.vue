@@ -37,8 +37,6 @@ export default {
 
 
 <style scoped lang="scss">
-@import '@/styles/index.scss';
-
 .header {
     margin-bottom: 20px;
 

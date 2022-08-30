@@ -59,8 +59,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '@/styles/index.scss';
-
 .goods {
 
     // .goods__item

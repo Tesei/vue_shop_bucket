@@ -13,8 +13,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '@/styles/index.scss';
-
 .btn {
     display: flex;
     justify-content: center;

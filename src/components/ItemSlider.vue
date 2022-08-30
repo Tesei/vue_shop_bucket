@@ -54,8 +54,6 @@ export default {
 
 
 <style scoped lang="scss">
-@import '@/styles/index.scss';
-
 .slider__item {
     flex: 0 1 24%;
     padding: 25px;

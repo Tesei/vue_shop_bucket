@@ -28,8 +28,6 @@ export default {
 
 
 <style scoped lang="scss">
-@import '@/styles/index.scss';
-
 .main {
 
     // .main__wrap

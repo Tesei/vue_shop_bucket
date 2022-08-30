@@ -17,18 +17,17 @@
                 </transition-group>
             </ul>
             <div class="main__installation installation">
-                <div class="installation__row">
-                    <input type="checkbox" class="installation__check" value="true"
-                        v-model="$store.state.needInstallation">
-                    <div class="installation__image-wrap">
-                        <img src="@/images/icons/tools.svg" alt="installation" class="installation__image">
-                    </div>
-                    <div class="installation__text">
-                        <span class="installation__title">Установка</span>
-                        <span class="installation__about">Отметьте, если Вам необходима консультация профессионала по
-                            монтажу выбранных товаров.</span>
-                    </div>
+
+                <input type="checkbox" class="installation__check" value="true" v-model="$store.state.needInstallation">
+                <div class="installation__image-wrap">
+                    <img src="@/images/icons/tools.svg" alt="installation" class="installation__image">
                 </div>
+                <div class="installation__text">
+                    <span class="installation__title">Установка</span>
+                    <span class="installation__about">Отметьте, если Вам необходима консультация профессионала по
+                        монтажу выбранных товаров.</span>
+                </div>
+
             </div>
         </div>
         <h2 class="main__goods-wrap-without-goods" v-else>В корзине нет товаров</h2>
@@ -53,8 +52,6 @@ export default {
 
 
 <style scoped lang="scss">
-@import '@/styles/index.scss';
-
 .main {
 
     // .main__list-of-goods
@@ -132,7 +129,14 @@ export default {
     }
 
     // .main__installation
-    &__installation {}
+    &__installation {
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+        background-color: $bgn;
+        padding: 25px;
+        width: 100%;
+    }
 
     // .main__goods-wrap
     &__goods-wrap {
@@ -148,16 +152,6 @@ export default {
 .goods-image {}
 
 .installation {
-
-    // .installation__row
-    &__row {
-        display: flex;
-        align-items: center;
-        border-radius: 5px;
-        background-color: $bgn;
-        padding: 25px;
-        width: 100%;
-    }
 
     // .installation__check
     &__check {
@@ -191,7 +185,7 @@ export default {
     // .installation__title
     &__title {
         font-weight: 600;
-        margin: 14px 0 2px;
+        margin-bottom: 5px;
         font-size: 1.6rem;
         display: block;
     }

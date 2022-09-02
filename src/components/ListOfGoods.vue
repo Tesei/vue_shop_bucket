@@ -3,22 +3,25 @@
         <div class="main__text">
             <div class="main__text-left-side">
                 <h1 class="main__title">Ваша корзина</h1>
-                <span class="main__amount-of-goods"> {{  $store.state.amountGoods  }} товара</span>
+                <span class="main__amount-of-goods"> {{ amountGoods }} товара</span>
             </div>
             <div class="main__text-right-side">
-                <button class="main__clear-bucket" @click="$store.dispatch('clearBucket')">Очистить корзину</button>
+                <button class="main__clear-bucket" @click="clearBucket">Очистить корзину</button>
             </div>
         </div>
 
-        <div class="main__goods-wrap" v-if="$store.state.amountGoods">
+        <div class="main__goods-wrap" v-if="amountGoods">
             <ul class="main__goods-items goods">
                 <transition-group name="post-list">
-                    <item-of-goods v-for="item in $store.state.goodsForBuy" :item="item" :key="item.id" />
+                    <item-of-goods v-for="item in goodsForBuy" :item="item" :key="item.id" />
                 </transition-group>
             </ul>
             <div class="main__installation installation">
 
-                <input type="checkbox" class="installation__check" value="true" v-model="$store.state.needInstallation">
+                <input id="installation" class="installation__check-input" type="checkbox" value="true"
+                    v-model="$store.state.needInstallation">
+                <label class="installation__check-label" for="installation"></label>
+
                 <div class="installation__image-wrap">
                     <img src="@/images/icons/tools.svg" alt="installation" class="installation__image">
                 </div>
@@ -37,16 +40,32 @@
 
 <script>
 import ItemOfGoods from "@/components/ItemOfGoods";
+import { mapState, mapActions } from 'vuex'
 
 export default {
     components: {
         ItemOfGoods
     },
     mounted() {
-        this.$store.dispatch('calculateWholeSumm');
-        this.$store.dispatch('calculateAmountGoods');
-
+        this.calculateWholeSumm();
+        this.calculateAmountGoods();
+        // this.$store.dispatch('calculateWholeSumm');
+        // this.$store.dispatch('calculateAmountGoods');
     },
+    methods: {
+        ...mapActions({
+            clearBucket: 'clearBucket',
+            calculateWholeSumm: 'calculateWholeSumm',
+            calculateAmountGoods: 'calculateAmountGoods',
+        }),
+    },
+    computed: {
+        ...mapState({
+            needInstallation: state => state.needInstallation,
+            goodsForBuy: state => state.goodsForBuy,
+            amountGoods: state => state.amountGoods,
+        }),
+    }
 }
 </script>
 
@@ -153,10 +172,35 @@ export default {
 
 .installation {
 
-    // .installation__check
-    &__check {
+    // .installation__check-label
+    &__check-label {
+        cursor: pointer;
+        position: relative;
         width: 19px;
         height: 19px;
+        border: 1px solid $gray-txt;
+        border-radius: 2px;
+        background-color: $white;
+        box-shadow: inset 2px 2px 1px rgba(0, 0, 0, 0.08);
+        transition: all 0.2s ease 0s;
+    }
+
+    // .installation__check-input
+    &__check-input {
+        position: relative;
+        z-index: -1;
+        opacity: 0;
+
+        &:checked+.installation__check-label::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: $blue;
+            border: 1px solid $white;
+        }
     }
 
     // .installation__image-wrap

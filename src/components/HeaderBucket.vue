@@ -11,7 +11,7 @@
                             </div>
                             <div class="info-bucket__text">
                                 <span class="info-bucket__title">Ваша корзина</span>
-                                <span class="info-bucket__amount-of-goods">{{  $store.state.amountGoods  }}
+                                <span class="info-bucket__amount-of-goods">{{  amountGoods  }}
                                     товара
                                 </span>
                                 <span class="info-bucket__summ-of-goods text">{{  summWithSpace  }} ₽</span>
@@ -25,11 +25,16 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 
 export default {
     computed: {
+        ...mapState({
+            wholeSumm: state => state.wholeSumm,
+            amountGoods: state => state.amountGoods,
+        }),
         summWithSpace() {
-            return this.$store.state.wholeSumm.toLocaleString("ru-RU");
+            return this.wholeSumm.toLocaleString("ru-RU");
         }
     }
 }

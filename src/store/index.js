@@ -1,4 +1,5 @@
 import { createStore } from 'vuex';
+import axios from 'axios';
 
 export default createStore({
   state: ()=>({    
@@ -16,6 +17,10 @@ export default createStore({
     ],
     wholeSumm: 0,
     amountGoods: 0,
+    dataSending: false,
+    orderSuccess: false,
+    orderError: false,
+    errors: [],    // массив для записи ошибок
   }),
 
   getters: {  },
@@ -31,6 +36,18 @@ export default createStore({
   },
   setAmountGoods (state, amountGoods) {     
     state.amountGoods = amountGoods;
+  },
+  setDataSending (state, dataSending) {     
+    state.dataSending = dataSending;
+  },
+  setOrderSuccess (state, orderSuccess) {     
+    state.orderSuccess = orderSuccess;
+  },
+  setOrderError (state, orderError) {     
+    state.orderError = orderError;
+  },
+  setErrors (state, errors) {     
+    state.errors = errors;
   },
   increment ( state, index) {
       state.goodsForBuy[index].amount++;      
@@ -86,5 +103,29 @@ export default createStore({
     }
     else this.dispatch("increaseAmountItems", item);
   },
+  async orderSend ({state, commit}){
+    commit("setDataSending", true);
+
+    axios.post(`http://localhost:8081`, {
+                body: {
+                  summOfOrder: state.wholeSumm,
+                  needInstallation: state.needInstallation,
+                  listOfOrder: state.goodsForBuy,
+                }
+            })
+                .then(() => {
+                  commit("setDataSending", false);
+                  console.log('hi1');
+                  
+                  commit("setOrderSuccess", true);
+                })
+                .catch(e => {
+                    commit("setErrors", [e]);
+                    commit("setDataSending", false);
+                  console.log(state.errors);
+
+                    commit("setOrderError", true);
+                })
+  }
   },  
 })

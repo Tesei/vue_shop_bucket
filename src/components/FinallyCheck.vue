@@ -8,15 +8,15 @@
                     <ul class="check__parametrs">
                         <li class="check__parametr-row row-1">
                             <span class="check__info text">Сумма заказа</span>
-                            <div class="check__parametr">{{  summWithSpace  }} ₽</div>
+                            <div class="check__parametr">{{ summWithSpace }} ₽</div>
                         </li>
                         <li class="check__parametr-row row-2">
                             <span class="check__info text">Количество</span>
-                            <div class="check__parametr">{{  $store.state.amountGoods  }} шт</div>
+                            <div class="check__parametr">{{ amountGoods }} шт</div>
                         </li>
                         <li class="check__parametr-row row-3">
                             <span class="check__info text">Установка</span>
-                            <div v-if="!($store.state.needInstallation)" class="check__parametr">Нет</div>
+                            <div v-if="!(needInstallation)" class="check__parametr">Нет</div>
                             <div v-else class="check__parametr">Да</div>
                         </li>
                     </ul>
@@ -24,11 +24,12 @@
                 <div class="check__text check__text_button">
                     <div class="check__summ-of-all-goods-row">
                         <span class="check__text-summ text">Стоимость товаров</span>
-                        <div class="check__summ-amount-rub">{{  summWithSpace  }} ₽</div>
+                        <div class="check__summ-amount-rub">{{ summWithSpace }} ₽</div>
                     </div>
                 </div>
                 <div class="check__buttons-row" v-if="!dataSending">
-                    <my-button class="btn check__btn check__btn_confirm" @click="orderSend">Оформить заказ</my-button>
+                    <my-button class="btn check__btn check__btn_confirm" @click="orderSend">Оформить
+                        заказ</my-button>
                     <my-button class="btn btn_color-reverse check__btn check__btn_buy-in-one-click">Купить в 1 клик
                     </my-button>
                 </div>
@@ -55,50 +56,30 @@
 
 
 <script>
-import axios from 'axios';
+import { mapState, mapActions } from 'vuex'
 
 export default {
-    data() {
-        return {
-            errors: [],    // массив для записи ошибок
-            dataSending: false,
-            orderSuccess: false,
-            orderError: false,
-        }
-    },
-
     methods: {
-        orderSend: function () {
-            this.dataSending = true;
-
-            axios.post(`http://localhost:8081`, {
-                body: this.orderBody
-            })
-                .then(() => {
-                    this.dataSending = false;
-                    this.orderSuccess = true;
-                })
-                .catch(e => {
-                    this.errors.push(e);
-                    this.dataSending = false;
-                    this.orderError = true;
-                })
-        }
+        ...mapActions({
+            orderSend: 'orderSend',
+        }),
     },
     // Рассчитываем сумму заказа в хранилище, перед загрузкой страницы
     beforeCreate() {
         this.$store.dispatch("calculateWholeSumm");
     },
     computed: {
+        ...mapState({
+            wholeSumm: state => state.wholeSumm,
+            needInstallation: state => state.needInstallation,
+            goodsForBuy: state => state.goodsForBuy,
+            amountGoods: state => state.amountGoods,
+            dataSending: state => state.dataSending,
+            orderSuccess: state => state.orderSuccess,
+            orderError: state => state.orderError,
+        }),
         summWithSpace() {
-            return this.$store.state.wholeSumm.toLocaleString("ru-RU");
-        },
-        orderBody() {   // данные для отправки(позже они преобразуются в json)
-            return {
-                summOfOrder: this.$store.state.wholeSumm,
-                needInstallation: this.$store.state.needInstallation,
-                listOfOrder: this.$store.state.goodsForBuy,
-            }
+            return this.wholeSumm.toLocaleString("ru-RU");
         },
     }
 }
@@ -221,6 +202,7 @@ export default {
     // .check__data-send-message
     &__data-send-message {
         font-size: 1.8rem;
+        margin-top: 10px;
     }
 }
 

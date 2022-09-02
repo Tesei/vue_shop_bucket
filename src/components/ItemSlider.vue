@@ -17,13 +17,14 @@
                 <span class="item-slide__price-eur_to">643.86 €</span>
             </div>
         </div>
-        <my-button class="btn item-slide__btn" @click="$store.dispatch('addIteminList', item)">Добавить в корзину
+        <my-button class="btn item-slide__btn" @click="addIteminList(item)">Добавить в корзину
         </my-button>
     </li>
 </template>
 
 
 <script>
+import { mapActions } from 'vuex'
 
 export default {
     props: {
@@ -49,6 +50,11 @@ export default {
                     '.').split('').reverse().join('');
         }
     },
+    methods: {
+        ...mapActions({
+            addIteminList: 'addIteminList',
+        }),
+    }
 }
 </script>
 

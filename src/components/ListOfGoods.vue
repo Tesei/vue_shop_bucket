@@ -49,8 +49,6 @@ export default {
     mounted() {
         this.calculateWholeSumm();
         this.calculateAmountGoods();
-        // this.$store.dispatch('calculateWholeSumm');
-        // this.$store.dispatch('calculateAmountGoods');
     },
     methods: {
         ...mapActions({

@@ -62,11 +62,12 @@ export default {
     methods: {
         ...mapActions({
             orderSend: 'orderSend',
+            calculateWholeSumm: 'calculateWholeSumm',
         }),
     },
     // Рассчитываем сумму заказа в хранилище, перед загрузкой страницы
     beforeCreate() {
-        this.$store.dispatch("calculateWholeSumm");
+        this.calculateWholeSumm;
     },
     computed: {
         ...mapState({

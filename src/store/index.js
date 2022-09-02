@@ -122,8 +122,6 @@ export default createStore({
                 .catch(e => {
                     commit("setErrors", [e]);
                     commit("setDataSending", false);
-                  console.log(state.errors);
-
                     commit("setOrderError", true);
                 })
   }

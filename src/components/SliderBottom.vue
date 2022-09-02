@@ -33,6 +33,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/scss';
 
 export default {
+    name: "slider-bottom",
     components: {
         Swiper,
         SwiperSlide,

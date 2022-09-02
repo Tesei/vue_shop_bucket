@@ -4,13 +4,13 @@
             <img :src="itemImage" :alt=item.shortName class="item-slide__image">
         </div>
         <div class="item-slide__text">
-            <div class="item-slide__title">{{  item.name  }}</div>
-            <span class="item-slide__text-about text">{{  item.about  }} </span>
+            <div class="item-slide__title">{{ item.name }}</div>
+            <span class="item-slide__text-about text">{{ item.about }} </span>
         </div>
         <div class="item-slide__price">
             <div class="item-slide__price-rub">
-                <span class="item-slide__price-rub_from">{{  itemPriceFromWithSpace  }} ₽</span> –
-                <span class="item-slide__price-rub_to">{{  itemPriceToWithSpace  }} ₽</span>
+                <span class="item-slide__price-rub_from">{{ itemPriceFromWithSpace }} ₽</span> –
+                <span class="item-slide__price-rub_to">{{ itemPriceToWithSpace }} ₽</span>
             </div>
             <div class="item-slide__price-eur">
                 <span class="item-slide__price-eur_from">77.60 €</span> –
@@ -27,6 +27,7 @@
 import { mapActions } from 'vuex'
 
 export default {
+    name: "item-slider",
     props: {
         item: {
             type: Object,

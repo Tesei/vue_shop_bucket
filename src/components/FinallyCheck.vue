@@ -59,6 +59,7 @@
 import { mapState, mapActions } from 'vuex'
 
 export default {
+    name: "finally-check",
     methods: {
         ...mapActions({
             orderSend: 'orderSend',

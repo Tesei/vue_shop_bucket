@@ -11,10 +11,10 @@
                             </div>
                             <div class="info-bucket__text">
                                 <span class="info-bucket__title">Ваша корзина</span>
-                                <span class="info-bucket__amount-of-goods">{{  amountGoods  }}
+                                <span class="info-bucket__amount-of-goods">{{ amountGoods }}
                                     товара
                                 </span>
-                                <span class="info-bucket__summ-of-goods text">{{  summWithSpace  }} ₽</span>
+                                <span class="info-bucket__summ-of-goods text">{{ summWithSpace }} ₽</span>
                             </div>
                         </div>
                     </div>
@@ -28,6 +28,7 @@
 import { mapState } from 'vuex'
 
 export default {
+    name: "header-bucket",
     computed: {
         ...mapState({
             wholeSumm: state => state.wholeSumm,

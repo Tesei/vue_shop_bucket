@@ -18,9 +18,9 @@
             </ul>
             <div class="main__installation installation">
 
-                <input id="installation" class="installation__check-input" type="checkbox" value="true"
+                <input id="installationCheck" class="installation__check-input" type="checkbox" value="true"
                     v-model="$store.state.needInstallation">
-                <label class="installation__check-label" for="installation"></label>
+                <label class="installation__check-label" for="installationCheck"></label>
 
                 <div class="installation__image-wrap">
                     <img src="@/images/icons/tools.svg" alt="installation" class="installation__image">
@@ -43,6 +43,7 @@ import ItemOfGoods from "@/components/ItemOfGoods";
 import { mapState, mapActions } from 'vuex'
 
 export default {
+    name: "list-of-goods",
     components: {
         ItemOfGoods
     },

@@ -19,6 +19,7 @@ import ListOfGoods from "@/components/ListOfGoods.vue";
 import FinallyCheck from "@/components/FinallyCheck.vue";
 
 export default {
+    name: "finally-bucket",
     components: {
         ListOfGoods,
         FinallyCheck

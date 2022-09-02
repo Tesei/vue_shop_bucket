@@ -1,5 +1,11 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
+import qs from 'qs'
+
+//  По умолчанию типом содержимого Axios является application / json, что является непростым запросом, 
+// изменяем метод запроса Axios по умолчанию, чтобы сделать его простым запросом
+axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
+axios.defaults.transformRequest = [obj => qs.stringify(obj)]
 
 export default createStore({
   state: ()=>({    
@@ -107,23 +113,21 @@ export default createStore({
     commit("setDataSending", true);
 
     axios.post(`http://localhost:8081`, {
-                body: {
-                  summOfOrder: state.wholeSumm,
-                  needInstallation: state.needInstallation,
-                  listOfOrder: state.goodsForBuy,
-                }
-            })
-                .then(() => {
-                  commit("setDataSending", false);
-                  console.log('hi1');
-                  
-                  commit("setOrderSuccess", true);
-                })
-                .catch(e => {
-                    commit("setErrors", [e]);
-                    commit("setDataSending", false);
-                    commit("setOrderError", true);
-                })
+          body: {
+            summOfOrder: state.wholeSumm,
+            needInstallation: state.needInstallation,
+            listOfOrder: state.goodsForBuy,
+          }
+      })
+          .then(() => {
+            commit("setDataSending", false);                  
+            commit("setOrderSuccess", true);
+          })
+          .catch(e => {
+              commit("setErrors", [e]);
+              commit("setDataSending", false);
+              commit("setOrderError", true);
+          })
   }
   },  
 })

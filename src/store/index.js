@@ -1,38 +1,25 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
-import qs from 'qs'
-
-//  По умолчанию типом содержимого Axios является application / json, что является непростым запросом, 
-// изменяем метод запроса Axios по умолчанию, чтобы сделать его простым запросом
-axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
-axios.defaults.transformRequest = [obj => qs.stringify(obj)]
 
 export default createStore({
   state: ()=>({    
     needInstallation: false,
-    goodsForBuy: [
-        {id: 1, name: "Вытяжное устройство G2H", about: "12-72/168 м3/ч / гидрорегулируемый расход / от датчика присутствия", article: "G2H1065", image: "g2h", shortName: "G2H", price:"12644", priceFrom: "6848", priceTo: "56584", amount: 1, summ: 12644},
-        {id: 2, name: "Вытяжное устройство BXC", about: "Вытяжное устройство для механической системы вентиляции", article: "G2H1066", image: "@/images/bxc.png", shortName: "BXC", price:"13644", priceFrom: "6848", priceTo: "56584", amount: 1, summ: 13644},
-        {id: 3, name: "Вытяжное устройство GHN", about: "Вытяжное устройство с датчиком присутствия", article: "G2H1067", image: "@/images/ghn.png", shortName: "GHN", price:"14644", priceFrom: "6848", priceTo: "56584", amount: 1, summ: 14644},
-    ],
-    arrGoods: [
-      {id: 1, name: "Вытяжное устройство G2H", about: "12-72/168 м3/ч / гидрорегулируемый расход / от датчика присутствия", article: "G2H1065", image: "@/images/g2h.png", shortName: "G2H", price:"12644", priceFrom: "6848", priceTo: "56584", amount: 1, summ: 12644,},
-      {id: 2, name: "Вытяжное устройство BXC", about: "Многофункциональное вытяжное устройство для естественной и гибридной вентиляции", article: "G2H1066", image: "@/images/bxc.png", shortName: "BXC", price:"13644", priceFrom: "6848", priceTo: "56584", amount: 1, summ: 13644},
-      {id: 3, name: "Вытяжное устройство GHN", about: "Вытяжное устройство с датчиком присутствия", article: "G2H1067", image: "@/images/ghn.png", shortName: "GHN", price:"14644", priceFrom: "6848", priceTo: "56584", amount: 1, summ: 14644},
-      {id: 4, name: "Вытяжное устройство TDA", about: "Вытяжное устройство с датчиком присутствия", article: "G2H1068", image: "@/images/g2h.png", shortName: "TDA", price:"12644", priceFrom: "6848", priceTo: "56584", amount: 1, summ: 12644},
-    ],
+    goodsForBuy: [],
+    arrGoods: [],
     wholeSumm: 0,
     amountGoods: 0,
     dataSending: false,
+    dataDownloading: false,
     orderSuccess: false,
     orderError: false,
-    errors: [],    // массив для записи ошибок
+    errors: [123],    // массив для записи ошибок
   }),
-
-  getters: {  },
   mutations: {
   setGoodsForBuy (state, goodsForBuy) {
       state.goodsForBuy = goodsForBuy;
+  },
+  setArrGoods (state, arrGoods) {
+      state.arrGoods = arrGoods;
   },
   setneedInstallation (state, needInstallation) {
       state.needInstallation = needInstallation;
@@ -45,6 +32,9 @@ export default createStore({
   },
   setDataSending (state, dataSending) {     
     state.dataSending = dataSending;
+  },
+  setDataDownloading (state, dataDownloading) {     
+    state.dataDownloading = dataDownloading;
   },
   setOrderSuccess (state, orderSuccess) {     
     state.orderSuccess = orderSuccess;
@@ -67,67 +57,102 @@ export default createStore({
   },
 
   actions: {
-  increaseAmountItems ({state, commit}, someItem){      
+  increaseAmountItems ({state, commit, dispatch}, someItem){      
     let indexItem = state.goodsForBuy.findIndex(arrItem => arrItem.id === someItem.id);    
     commit("increment", indexItem);
     commit("changeSummItem", indexItem);
     commit("setWholeSumm", state.goodsForBuy.reduce((previousValue, item) => item.summ + previousValue, 0));
     commit("setAmountGoods", state.goodsForBuy.reduce((previousValue, item) => item.amount + previousValue, 0));
+    dispatch('updateDataOnServer')
   },
-  degreaseAmountItems ({state, commit}, someItem){      
+  degreaseAmountItems ({state, commit, dispatch}, someItem){      
     let indexItem = state.goodsForBuy.findIndex(arrItem => arrItem.id === someItem.id);    
     commit("decrement", indexItem);
     commit("changeSummItem", indexItem);
     commit("setGoodsForBuy", state.goodsForBuy.filter(p => p.amount > 0));
     commit("setWholeSumm", state.goodsForBuy.reduce((previousValue, item) => item.summ + previousValue, 0));
     commit("setAmountGoods", state.goodsForBuy.reduce((previousValue, item) => item.amount + previousValue, 0));
-
+    dispatch('updateDataOnServer')
   },
   calculateWholeSumm ({state, commit}){
     commit("setWholeSumm", state.goodsForBuy.reduce((previousValue, item) => item.summ + previousValue, 0))
   },
-  deleteItem ({state, commit}, item){
-    commit("setGoodsForBuy", state.goodsForBuy.filter(p => p !== item));
-    commit("setWholeSumm", state.goodsForBuy.reduce((previousValue, item) => item.summ + previousValue, 0));
-    commit("setAmountGoods", state.goodsForBuy.reduce((previousValue, item) => item.amount + previousValue, 0));
-    if(state.goodsForBuy.length === 0) commit("setneedInstallation", false);
+  async deleteItem ({state, commit}, item){
+    await axios.delete(`http://localhost:3000/api/order/${item.id}`)
+          .then(() => {
+            commit("setGoodsForBuy", state.goodsForBuy.filter(p => p !== item));
+            commit("setWholeSumm", state.goodsForBuy.reduce((previousValue, item) => item.summ + previousValue, 0));
+            commit("setAmountGoods", state.goodsForBuy.reduce((previousValue, item) => item.amount + previousValue, 0));
+            if(state.goodsForBuy.length === 0) commit("setneedInstallation", false);
+          })
+          .catch(e => {
+              commit("setErrors", [e]);
+          })
   },
-  clearBucket ({state, commit}){
+  async clearBucket ({state, commit}){
+    try {
     commit("setGoodsForBuy", []);
     commit("setWholeSumm", state.goodsForBuy.reduce((previousValue, item) => item.summ + previousValue, 0));
     commit("setAmountGoods", state.goodsForBuy.reduce((previousValue, item) => item.amount + previousValue, 0));
     commit("setneedInstallation", false);
+    await axios.delete(`http://localhost:3000/api/order`)    
+    } catch(e) {
+        commit("setErrors", [e])
+    } 
   },
   calculateAmountGoods ({state, commit}){
     commit("setAmountGoods", state.goodsForBuy.reduce((previousValue, item) => item.amount + previousValue, 0));
   },
-  addIteminList ({state, commit}, item){
-    if(!state.goodsForBuy.find(someItem => someItem.id === item.id)) {
-      commit("setAmountGoods", state.goodsForBuy.push(item));
-      commit("setWholeSumm", state.goodsForBuy.reduce((previousValue, item) => item.summ + previousValue, 0));
-      commit("setAmountGoods", state.goodsForBuy.reduce((previousValue, item) => item.amount + previousValue, 0));
-    }
-    else this.dispatch("increaseAmountItems", item);
+  async addIteminList ({state, commit, dispatch}, item){    
+      if(!state.goodsForBuy.find(someItem => someItem.id === item.id)) {
+        commit("setAmountGoods", state.goodsForBuy.push(item));
+        commit("setWholeSumm", state.goodsForBuy.reduce((previousValue, item) => item.summ + previousValue, 0));
+        commit("setAmountGoods", state.goodsForBuy.reduce((previousValue, item) => item.amount + previousValue, 0));
+      }
+      else this.dispatch("increaseAmountItems", item);    
+    dispatch('updateDataOnServer')
   },
-  async orderSend ({state, commit}){
-    commit("setDataSending", true);
-
-    axios.post(`http://localhost:8081`, {
-          body: {
-            summOfOrder: state.wholeSumm,
-            needInstallation: state.needInstallation,
-            listOfOrder: state.goodsForBuy,
-          }
-      })
+  async orderSend ({commit}){
+    commit("setDataSending", true)
+    await axios.post(`http://localhost:3000/api/order`)
           .then(() => {
             commit("setDataSending", false);                  
             commit("setOrderSuccess", true);
+            setTimeout(()=> commit("setOrderSuccess", false), 3000)
           })
           .catch(e => {
               commit("setErrors", [e]);
               commit("setDataSending", false);
               commit("setOrderError", true);
           })
+  },
+  async changeInstallStatus ({commit, state}){
+    let newStatus = state.needInstallation ? 'yes' : 'no'
+    await axios.patch(`http://localhost:3000/api/order`, {status: newStatus})
+      .catch(e => {
+          commit("setErrors", [e]);
+      })
+  },
+  async downloadStartParametrs ({ commit }){
+    commit("setDataDownloading", true);
+
+    await axios.get(`http://localhost:3000/api/order`)
+          .then((response ) => {
+            commit("setDataDownloading", false);    
+            commit("setGoodsForBuy", response.data.goods);
+            commit("setArrGoods", response.data.sliderItems);
+            commit("setneedInstallation", response.data.needInstallation);    
+          })
+          .catch(e => {
+              commit("setErrors", [e]);
+              commit("setDataDownloading", false);
+          })
+  },
+  async updateDataOnServer({state, commit}){
+    await axios.put(`http://localhost:3000/api/order`, {...state.goodsForBuy, needInstallation: state.needInstallation})
+    .catch(e => {
+        commit("setErrors", [e]);
+    })
   }
   },  
 })

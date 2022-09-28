@@ -33,24 +33,17 @@
                     <my-button class="btn btn_color-reverse check__btn check__btn_buy-in-one-click">Купить в 1 клик
                     </my-button>
                 </div>
-                <div class="check__data-send" v-else>
-                    <div class="wait-three-line__wide">
-                        <div class="wait-three-line__wide-wrap">
-                            <div class="wait-three-line__wide_one"></div>
-                            <div class="wait-three-line__wide_two"></div>
-                            <div class="wait-three-line__wide_three"></div>
-                        </div>
-                    </div>
-                </div>
-                <span class="check__data-send-message text" v-if="orderSuccess">Заказ софрмирован!</span>
-                <span class="check__data-send-message text" v-if="orderError">Во время отправки данных произошёл сбой!
-                    Попробуйте оформить заказ заново.</span>
+                <my-preloader v-else class="check__data-send" />
+
+                <transition-group name="check__data-send-message-anination">
+                    <span class="check__data-send-message text" v-if="orderError">Во время отправки данных произошёл
+                        сбой!
+                        Попробуйте оформить заказ заново.</span>
+                    <span class="check__data-send-message text" v-else-if="orderSuccess">Заказ софрмирован!</span>
+                </transition-group>
             </div>
 
-
-
         </div>
-
     </div>
 </template>
 
@@ -208,79 +201,19 @@ export default {
     }
 }
 
-.row-1 {}
-
-.row-2 {}
-
-.row-3 {}
-
-.wait-three-line__wide {
-    width: 10%;
-    padding-bottom: 8%;
-    position: relative;
-    margin: 10px;
-
-
-    // .wait-three-line__wide-wrap
-    &-wrap {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-    }
-
-    &_one,
-    &_two,
-    &_three {
-        border-radius: 3px;
-        background-color: $blue;
-        width: 22%;
-        animation-duration: 0.5s;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-        animation-direction: alternate;
-    }
-
-    // .wait-three-line__one
-    &_one {
-        padding-bottom: 20%;
-        animation-name: growAndDegreePercentMin;
-    }
-
-    // .wait-three-line__two
-    &_two {
-        padding-bottom: 80%;
-        animation-name: growAndDegreePercentMax;
-    }
-
-    // .wait-three-line__three
-    &_three {
-        padding-bottom: 20%;
-        animation-name: growAndDegreePercentMin;
-    }
+.check__data-send-message-anination-item {
+    display: inline-block;
+    margin-right: 10px;
 }
 
-@keyframes growAndDegreePercentMin {
-    0% {
-        padding-bottom: 20%;
-    }
-
-    100% {
-        padding-bottom: 80%;
-    }
+.check__data-send-message-anination-enter-active,
+.check__data-send-message-anination-leave-active {
+    transition: all .4s ease;
 }
 
-@keyframes growAndDegreePercentMax {
-    0% {
-        padding-bottom: 80%;
-    }
-
-    100% {
-        padding-bottom: 20%;
-    }
+.check__data-send-message-anination-enter-from,
+.check__data-send-message-anination-leave-to {
+    opacity: 0;
+    transform: translateX(-130px);
 }
 </style>

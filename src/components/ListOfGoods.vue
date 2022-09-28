@@ -10,7 +10,7 @@
             </div>
         </div>
 
-        <div class="main__goods-wrap" v-if="amountGoods">
+        <div class="main__goods-wrap" v-if="amountGoods && goodsForBuy">
             <ul class="main__goods-items goods">
                 <transition-group name="post-list">
                     <item-of-goods v-for="item in goodsForBuy" :item="item" :key="item.id" />
@@ -19,7 +19,7 @@
             <div class="main__installation installation">
 
                 <input id="installationCheck" class="installation__check-input" type="checkbox" value="true"
-                    v-model="$store.state.needInstallation">
+                    v-model="$store.state.needInstallation" @change="changeInstallStatus">
                 <label class="installation__check-label" for="installationCheck"></label>
 
                 <div class="installation__image-wrap">
@@ -33,6 +33,7 @@
 
             </div>
         </div>
+        <my-preloader v-else-if="dataDownloading" class="main__goods-preloader" />
         <h2 class="main__goods-wrap-without-goods" v-else>В корзине нет товаров</h2>
     </div>
 </template>
@@ -40,22 +41,23 @@
 
 <script>
 import ItemOfGoods from "@/components/ItemOfGoods";
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 
 export default {
     name: "list-of-goods",
     components: {
         ItemOfGoods
     },
-    mounted() {
-        this.calculateWholeSumm();
-        this.calculateAmountGoods();
-    },
     methods: {
+        ...mapMutations({
+            setneedInstallation: 'setneedInstallation',
+        }),
         ...mapActions({
             clearBucket: 'clearBucket',
             calculateWholeSumm: 'calculateWholeSumm',
             calculateAmountGoods: 'calculateAmountGoods',
+            downloadStartParametrs: 'downloadStartParametrs',
+            changeInstallStatus: 'changeInstallStatus',
         }),
     },
     computed: {
@@ -63,8 +65,14 @@ export default {
             needInstallation: state => state.needInstallation,
             goodsForBuy: state => state.goodsForBuy,
             amountGoods: state => state.amountGoods,
+            dataDownloading: state => state.dataDownloading,
         }),
-    }
+    },
+    async created() {
+        await this.downloadStartParametrs()
+        await this.calculateWholeSumm()
+        await this.calculateAmountGoods()
+    },
 }
 </script>
 

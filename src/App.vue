@@ -31,6 +31,11 @@ export default {
     FinallyBucket,
     SliderBottom,
     HeaderBucket
+  },
+  mounted() {
+    // fetch('http://localhost:3000/api/contacts')
+    //   .then((res) => res.json())
+    //   .then((data) => console.log(data))
   }
 }
 </script>

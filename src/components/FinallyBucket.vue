@@ -3,8 +3,9 @@
     <div class="main__wrap">
         <div class="main__top">
             <!-- todo Доработать классы, чтобы было понятно при масштабировании -->
-            <h6 class="main__bread-crumbs">Главная <span class="_arrow"></span> <span class="_active">Корзина</span>
-            </h6>
+            <span class="main__bread-crumbs h6">Главная <span class="_arrow"></span> <span
+                    class="_active">Корзина</span>
+            </span>
         </div>
         <div class="main__body">
             <list-of-goods class="main__column main__column_left" />

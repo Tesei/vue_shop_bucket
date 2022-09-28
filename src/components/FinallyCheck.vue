@@ -4,7 +4,7 @@
 
             <div class="check__data">
                 <div class="check__text check__text_top">
-                    <h2 class="check__title">Итого</h2>
+                    <span class="check__title h2">Итого</span>
                     <ul class="check__parametrs">
                         <li class="check__parametr-row row-1">
                             <span class="check__info text">Сумма заказа</span>
@@ -214,6 +214,6 @@ export default {
 .check__data-send-message-anination-enter-from,
 .check__data-send-message-anination-leave-to {
     opacity: 0;
-    transform: translateX(-130px);
+    transform: translateX(130px);
 }
 </style>

@@ -63,7 +63,8 @@ app.delete('/api/order', (req, res)=> {
 
 // PUT - полностью обновляет модель
 app.put('/api/order', (req, res)=> {
-    startParametrs.goods = req.body
+    startParametrs.goods = req.body.goods
+    startParametrs.needInstallation = req.body.needInstallation
     res.json({message: 'Данные синхронизированы'})
 })
 

@@ -12,7 +12,7 @@ export default createStore({
     dataDownloading: false,
     orderSuccess: false,
     orderError: false,
-    errors: [123],    // массив для записи ошибок
+    errors: [],    // массив для записи ошибок
   }),
   mutations: {
   setGoodsForBuy (state, goodsForBuy) {
@@ -127,14 +127,13 @@ export default createStore({
           })
   },
   async changeInstallStatus ({commit, state}){
-    let newStatus = state.needInstallation ? 'yes' : 'no'
-    await axios.patch(`http://localhost:3000/api/order`, {status: newStatus})
+    await axios.patch(`http://localhost:3000/api/order`, {status: state.needInstallation})
       .catch(e => {
           commit("setErrors", [e]);
       })
   },
   async downloadStartParametrs ({ commit }){
-    commit("setDataDownloading", true);
+    commit("setDataDownloading", true);    
 
     await axios.get(`http://localhost:3000/api/order`)
           .then((response ) => {
@@ -149,7 +148,7 @@ export default createStore({
           })
   },
   async updateDataOnServer({state, commit}){
-    await axios.put(`http://localhost:3000/api/order`, {...state.goodsForBuy, needInstallation: state.needInstallation})
+    await axios.put(`http://localhost:3000/api/order`, {goods: state.goodsForBuy, needInstallation: state.needInstallation})
     .catch(e => {
         commit("setErrors", [e]);
     })

@@ -26,7 +26,7 @@ body {
 }
 //</ОСНОВНОЙ БЛОК>====================================================================================================
 
-h1,h2,h3,h4,h5,h6,.text {	
+h1,h2,h3,h4,h5,h6,.text,.h2,.h3,.h4,.h5,.h6 {	
 	line-height: 1.45;
 	font-weight: 400;
 }
@@ -34,20 +34,20 @@ h1,h2,h3,h4,h5,h6,.text {
 	display: inline-block;
 }
 
-h3 {
+.h3,h3 {
 	font-size: 1.8rem;
 }
 
-h4{
+.h4,h4{
 	font-size: 1.6rem;
 }
 
-h5 {
+.h5,h5 {
 	font-size: 1.4rem;
 	line-height: 1.5;
 }
 
-h6 {
+.h6,h6 {
 	font-size: 1.2rem;    
 }
 

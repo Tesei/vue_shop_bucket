@@ -17,7 +17,7 @@
                 </div>
                 <div class="btns__price-of-bit" v-if="item.amount > 1">{{ priceItemWithSpace }} ₽/шт. </div>
             </div>
-            <h3 class="goods__summ">{{ summItemWithSpace }} ₽</h3>
+            <span class="goods__summ h3">{{ summItemWithSpace }} ₽</span>
             <div class="goods__delete">
                 <img src="@/images/icons/close.svg" alt="Удалить товар" class="goods__delete-image"
                     @click="deleteItem(item)">

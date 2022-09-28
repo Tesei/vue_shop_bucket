@@ -34,7 +34,7 @@
             </div>
         </div>
         <my-preloader v-else-if="dataDownloading" class="main__goods-preloader" />
-        <h2 class="main__goods-wrap-without-goods" v-else>В корзине нет товаров</h2>
+        <span class="main__goods-wrap-without-goods h2" v-else>В корзине нет товаров</span>
     </div>
 </template>
 
@@ -73,6 +73,9 @@ export default {
         await this.calculateWholeSumm()
         await this.calculateAmountGoods()
     },
+    async mounted() {
+
+    }
 }
 </script>
 

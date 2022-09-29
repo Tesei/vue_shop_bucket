@@ -1,5 +1,5 @@
 <template>
-    <div class="main__list-of-goods">
+    <div class="main__bucket-list-goods">
         <div class="main__text">
             <div class="main__text-left-side">
                 <h1 class="main__title">Ваша корзина</h1>
@@ -13,7 +13,7 @@
         <div class="main__goods-wrap" v-if="amountGoods && goodsForBuy">
             <ul class="main__goods-items goods">
                 <transition-group name="post-list">
-                    <item-of-goods v-for="item in goodsForBuy" :item="item" :key="item.id" />
+                    <bucket-list-goods-item v-for="item in goodsForBuy" :item="item" :key="item.id" />
                 </transition-group>
             </ul>
             <div class="main__installation installation">
@@ -40,13 +40,13 @@
 
 
 <script>
-import ItemOfGoods from "@/components/ItemOfGoods";
+import BucketListGoodsItem from "@/components/BucketListGoodsItem";
 import { mapState, mapActions, mapMutations } from 'vuex'
 
 export default {
-    name: "list-of-goods",
+    name: "bucket-list-goods",
     components: {
-        ItemOfGoods
+        BucketListGoodsItem
     },
     methods: {
         ...mapMutations({
@@ -83,8 +83,8 @@ export default {
 <style scoped lang="scss">
 .main {
 
-    // .main__list-of-goods
-    &__list-of-goods {
+    // .main__bucket-list-goods
+    &__bucket-list-goods {
         display: flex;
         flex-direction: column;
         align-items: flex-start;

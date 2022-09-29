@@ -2,28 +2,27 @@
 <template>
     <div class="main__wrap">
         <div class="main__top">
-            <!-- todo Доработать классы, чтобы было понятно при масштабировании -->
             <span class="main__bread-crumbs h6">Главная <span class="_arrow"></span>
                 <span class="_active">Корзина</span>
             </span>
         </div>
         <div class="main__body">
-            <list-of-goods class="main__column main__column_left" />
-            <finally-check class="main__column main__column_right" />
+            <bucket-list-goods class="main__column main__column_left" />
+            <bucket-finally-check class="main__column main__column_right" />
         </div>
     </div>
 </template>
 
 
 <script>
-import ListOfGoods from "@/components/ListOfGoods.vue";
-import FinallyCheck from "@/components/FinallyCheck.vue";
+import BucketListGoods from "@/components/BucketListGoods.vue";
+import BucketFinallyCheck from "@/components/BucketFinallyCheck.vue";
 
 export default {
-    name: "finally-bucket",
+    name: "bucket-two-column",
     components: {
-        ListOfGoods,
-        FinallyCheck
+        BucketListGoods,
+        BucketFinallyCheck
     }
 }
 </script>

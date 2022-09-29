@@ -27,7 +27,7 @@
 import { mapActions } from 'vuex'
 
 export default {
-    name: "item-slider",
+    name: "slider-viewed-goods-item",
     props: {
         item: {
             type: Object,

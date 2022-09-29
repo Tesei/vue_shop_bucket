@@ -4,7 +4,7 @@
 
     <main class="main">
       <div class="main__content _container">
-        <finally-bucket />
+        <bucket-two-column />
       </div>
     </main>
     <footer class="footer">
@@ -13,7 +13,7 @@
           <h2 class="footer__title">Просмотренные товары</h2>
         </div>
         <div class="footer__bottom">
-          <slider-bottom />
+          <slider-viewed-goods />
         </div>
       </div>
     </footer>
@@ -22,14 +22,15 @@
 </template>
 
 <script>
-import FinallyBucket from "@/components/FinallyBucket.vue";
-import SliderBottom from "@/components/SliderBottom.vue";
+import BucketTwoColumn from "@/components/BucketTwoColumn.vue";
+import SliderViewedGoods from "@/components/SliderViewedGoods.vue";
 import HeaderBucket from "@/components/HeaderBucket.vue";
 
 export default {
+  name: 'App',
   components: {
-    FinallyBucket,
-    SliderBottom,
+    BucketTwoColumn,
+    SliderViewedGoods,
     HeaderBucket
   },
 }

@@ -5,7 +5,7 @@
             <swiper :modules="modules" :slides-per-view="1" :space-between="30" :navigation="true"
                 :pagination="{ type: 'fraction', }" @swiper="onSwiper" :preload-images="false">
                 <swiper-slide v-for="slideBlock in 6" :key="slideBlock" class="slider__items">
-                    <item-slider v-for="item in arrGoods" :key="item.id" :item="item" />
+                    <slider-viewed-goods-item v-for="item in arrGoods" :key="item.id" :item="item" />
                 </swiper-slide>
             </swiper>
 
@@ -25,7 +25,7 @@
 
 
 <script>
-import ItemSlider from "@/components/ItemSlider";
+import SliderViewedGoodsItem from "@/components/SliderViewedGoodsItem";
 import { mapState } from 'vuex'
 
 import { Navigation, Pagination } from 'swiper';
@@ -33,11 +33,11 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/scss';
 
 export default {
-    name: "slider-bottom",
+    name: "slider-viewed-goods",
     components: {
         Swiper,
         SwiperSlide,
-        ItemSlider
+        SliderViewedGoodsItem
     },
     computed: {
         ...mapState({

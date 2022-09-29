@@ -1,5 +1,5 @@
 <template>
-    <div class="main__finally-check check">
+    <div class="main__bucket-finally-check check">
         <div class="check__wrapp">
 
             <div class="check__data">
@@ -39,7 +39,7 @@
                     <span class="check__data-send-message text" v-if="orderError">Во время отправки данных произошёл
                         сбой!
                         Попробуйте оформить заказ заново.</span>
-                    <span class="check__data-send-message text" v-else-if="orderSuccess">Заказ софрмирован!</span>
+                    <span class="check__data-send-message text" v-else-if="orderSuccess">Заказ сформирован!</span>
                 </transition-group>
             </div>
 
@@ -52,7 +52,7 @@
 import { mapState, mapActions } from 'vuex'
 
 export default {
-    name: "finally-check",
+    name: "bucket-finally-check",
     methods: {
         ...mapActions({
             orderSend: 'orderSend',
@@ -84,8 +84,8 @@ export default {
 <style scoped lang="scss">
 .main {
 
-    // .main__finally-check
-    &__finally-check {}
+    // .main__bucket-finally-check
+    &__bucket-finally-check {}
 }
 
 .check {

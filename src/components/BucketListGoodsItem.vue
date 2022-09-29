@@ -31,7 +31,7 @@
 import { mapActions } from 'vuex'
 
 export default {
-    name: "item-of-goods",
+    name: "bucket-list-goods-item",
     props: {
         item: {
             type: Object,

@@ -1,3 +1,15 @@
+//===============================================================
+// Импровизированная база-данных
+//===============================================================
+let orderList = []
+const arrGoods = require('./lib/baseData')
+let startParametrs = {
+    goods: arrGoods.getGoods().slice(0,3),
+    needInstallation: false,
+}
+//===============================================================
+//===============================================================
+
 const express = require('express')
 // для корректной работы с путями подключаем модуль path
 const path = require('path')
@@ -16,28 +28,11 @@ let corsOptions = {
 app.use(express.json())
 app.use(cors(corsOptions))
 
-//===============================================================
-// Импровизированная база-данных
-//===============================================================
-let orderList = []
-const ARRGOODS = [
-    {id: v4(), name: "Вытяжное устройство G2H", about: "12-72/168 м3/ч / гидрорегулируемый расход / от датчика присутствия", article: "G2H1065", image: "@/images/g2h.png", shortName: "G2H", price:"12644", priceFrom: "6848", priceTo: "56584", amount: 1, summ: 12644,},
-    {id: v4(), name: "Вытяжное устройство BXC", about: "Многофункциональное вытяжное устройство для естественной и гибридной вентиляции", article: "G2H1066", image: "@/images/bxc.png", shortName: "BXC", price:"13644", priceFrom: "6848", priceTo: "56584", amount: 1, summ: 13644},
-    {id: v4(), name: "Вытяжное устройство GHN", about: "Вытяжное устройство с датчиком присутствия", article: "G2H1067", image: "@/images/ghn.png", shortName: "GHN", price:"14644", priceFrom: "6848", priceTo: "56584", amount: 1, summ: 14644},
-    {id: v4(), name: "Вытяжное устройство TDA", about: "Вытяжное устройство с датчиком присутствия", article: "G2H1068", image: "@/images/g2h.png", shortName: "TDA", price:"12644", priceFrom: "6848", priceTo: "56584", amount: 1, summ: 12644},
-    ]    
-
-let startParametrs = {
-    goods: ARRGOODS.slice(0,3),
-    needInstallation: false,
-}
-//===============================================================
-//===============================================================
 
 // GET
 app.get('/api/order', (req,res) => {
     // setTimeout(()=>{
-        res.status(200).json({...startParametrs ,sliderItems: ARRGOODS})
+        res.status(200).json({...startParametrs ,sliderItems: arrGoods.getGoods()})
     // },1000)
 })
 
@@ -78,12 +73,9 @@ app.patch('/api/order', (req, res)=> {
 
 // Для того, чтобы корректно отдавать статические файлы из клиента - Определям статическую папку
 // Ибо, ссылки на сторонние файлы не смогут быть динамичными
-app.use(express.static(path.resolve(__dirname, 'public')))
+// app.use(express.static(path.resolve(__dirname, 'public')))
 
 // говорим экспресс о том, что при любых запросах GET вызывать файл index.html
-// app.get('/', (req,res) =>{
-//     res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
-// })
 app.get('*', (req,res) =>{
     res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
 })

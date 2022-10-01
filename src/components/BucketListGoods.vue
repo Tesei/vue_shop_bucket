@@ -6,35 +6,65 @@
                 <span class="main__amount-of-goods"> {{ amountGoods }} товара</span>
             </div>
             <div class="main__text-right-side">
-                <button class="main__clear-bucket" @click="clearBucket">Очистить корзину</button>
+                <button
+                    class="main__clear-bucket"
+                    @click="clearBucket"
+                >Очистить корзину</button>
             </div>
         </div>
 
-        <div class="main__goods-wrap" v-if="amountGoods && goodsForBuy">
+        <div
+            class="main__goods-wrap"
+            v-if="amountGoods && goodsForBuy"
+        >
             <ul class="main__goods-items goods">
                 <transition-group name="post-list">
-                    <bucket-list-goods-item v-for="item in goodsForBuy" :item="item" :key="item.id" />
+                    <bucket-list-goods-item
+                        v-for="item in goodsForBuy"
+                        :item="item"
+                        :key="item.id"
+                    />
                 </transition-group>
             </ul>
             <div class="main__installation installation">
 
-                <input id="installationCheck" class="installation__check-input" type="checkbox" value="true"
-                    v-model="$store.state.needInstallation" @change="changeInstallStatus">
-                <label class="installation__check-label" for="installationCheck"></label>
+                <input
+                    id="installationCheck"
+                    class="installation__check-input"
+                    type="checkbox"
+                    value="true"
+                    v-model="$store.state.needInstallation"
+                    @change="changeInstallStatus"
+                >
+                <label
+                    class="installation__check-label"
+                    for="installationCheck"
+                ></label>
 
                 <div class="installation__image-wrap">
-                    <img src="@/images/icons/tools.svg" alt="installation" class="installation__image">
+                    <img
+                        src="@/images/icons/tools.svg"
+                        alt="installation"
+                        class="installation__image"
+                    >
                 </div>
                 <div class="installation__text">
                     <span class="installation__title">Установка</span>
-                    <span class="installation__about">Отметьте, если Вам необходима консультация профессионала по
+                    <span class="installation__about">Отметьте, если Вам необходима консультация
+                        профессионала по
                         монтажу выбранных товаров.</span>
                 </div>
 
             </div>
         </div>
-        <my-preloader v-else-if="dataDownloading" class="main__goods-preloader" />
-        <span class="main__goods-wrap-without-goods h2" v-else>В корзине нет товаров</span>
+        <my-preloader
+            v-else-if="dataDownloading"
+            class="main__goods-preloader"
+        />
+        <span
+            class="main__goods-wrap-without-goods h2"
+            v-else
+        >В корзине нет товаров</span>
     </div>
 </template>
 

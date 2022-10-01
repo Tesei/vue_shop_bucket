@@ -13,7 +13,7 @@
 - После перезагрузки данные сохраняются,
 - Возможность удаления и добавления товаров, изменение количества,
 - динамический расчёт,
-- Проект создан помакету: [макет фигма](https://www.figma.com/file/Foy98EhCVYrjBXzqOJAoKc/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5-Vue-(Copy)?node-id=1%3A210),
+- Проект создан по макету: [корзина покупателя](https://www.figma.com/file/Foy98EhCVYrjBXzqOJAoKc/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5-Vue-(Copy)?node-id=1%3A210),
 - использован слайдер "Swiper",
 - заказы покупателя сохраняются в хранилище
 
@@ -25,6 +25,8 @@ npm install
 
 ### Compiles and hot-reloads for development
 ```
+Запускаем обе комманды в консоли
+
 npm run serve - для запуска Клиента
 npm run dev - для запуска Сервера
 

@@ -2,7 +2,11 @@
     <li class="goods__item">
         <div class="goods__row">
             <div class="goods__image-wrap _ibg">
-                <img :src="itemImage" :alt=item.shortName class="goods__image">
+                <img
+                    :src="itemImage"
+                    :alt=item.shortName
+                    class="goods__image"
+                >
             </div>
             <ul class="goods__text-about">
                 <li class="goods__title text">{{ item.name }}</li>
@@ -11,16 +15,29 @@
             </ul>
             <div class="goods__amount-btns btns">
                 <div class="btns__row">
-                    <button class="btns__minus btns__cube" @click="degreaseAmountItems(item)">-</button>
+                    <button
+                        class="btns__minus btns__cube"
+                        @click="degreaseAmountItems(item)"
+                    >-</button>
                     <div class="btns__amount btns__cube">{{ item.amount }}</div>
-                    <button class="btns__plus btns__cube" @click="increaseAmountItems(item)">+</button>
+                    <button
+                        class="btns__plus btns__cube"
+                        @click="increaseAmountItems(item)"
+                    >+</button>
                 </div>
-                <div class="btns__price-of-bit" v-if="item.amount > 1">{{ priceItemWithSpace }} ₽/шт. </div>
+                <div
+                    class="btns__price-of-bit"
+                    v-if="item.amount > 1"
+                >{{ priceItemWithSpace }} ₽/шт. </div>
             </div>
             <span class="goods__summ h3">{{ summItemWithSpace }} ₽</span>
             <div class="goods__delete">
-                <img src="@/images/icons/close.svg" alt="Удалить товар" class="goods__delete-image"
-                    @click="deleteItem(item)">
+                <img
+                    src="@/images/icons/close.svg"
+                    alt="Удалить товар"
+                    class="goods__delete-image"
+                    @click="deleteItem(item)"
+                >
             </div>
         </div>
     </li>

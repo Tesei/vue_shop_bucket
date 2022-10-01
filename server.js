@@ -11,7 +11,6 @@ let startParametrs = {
 //===============================================================
 
 const express = require('express')
-// для корректной работы с путями подключаем модуль path
 const path = require('path')
 // Устанавливаем модуль который будет генерировать (функцией) id (к примеру в списке объектов массива)
 const {v4} = require('uuid')
@@ -35,9 +34,7 @@ app.use(cors(corsOptions))
 
 // GET
 app.get('/api/order', (req,res) => {
-    // setTimeout(()=>{
         res.status(200).json({...startParametrs ,sliderItems: arrGoods.getGoods()})
-    // },1000)
 })
 
 // POST
@@ -49,7 +46,6 @@ app.post('/api/order', (req, res)=> {
 })
 
 // DELETE
-// Указываем, дополнительно, днамический параметр id
 app.delete('/api/order/:id', (req, res)=> {
     startParametrs.goods = startParametrs.goods.filter(item => item.id !== req.params.id)
     res.status(200).json({message: 'Контакт был удалён'})
@@ -80,7 +76,6 @@ app.get('*', (req,res) =>{
     res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
 })
 
-//* ниже моё дополнение ===============================================================
 // Пользовательская страница 404
 app.use((req,res) =>{
     res.type('text/plain')
@@ -95,7 +90,6 @@ app.use((err,req,res, next) =>{
     res.status(500)
     res.send('500 - Ошибка сервера')
 })
-//* выше моё дополнение ===============================================================
 
 // Запускаем сервер и слушаем порт localhost/3000
 app.listen(port, () => {

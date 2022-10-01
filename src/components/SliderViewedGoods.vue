@@ -2,10 +2,25 @@
     <div class="slider-footer slider">
 
         <div class="slider__slide">
-            <swiper :modules="modules" :slides-per-view="1" :space-between="30" :navigation="true"
-                :pagination="{ type: 'fraction', }" @swiper="onSwiper" :preload-images="false">
-                <swiper-slide v-for="slideBlock in 6" :key="slideBlock" class="slider__items">
-                    <slider-viewed-goods-item v-for="item in arrGoods" :key="item.id" :item="item" />
+            <swiper
+                :modules="modules"
+                :slides-per-view="1"
+                :space-between="30"
+                :navigation="true"
+                :pagination="{ type: 'fraction', }"
+                @swiper="onSwiper"
+                :preload-images="false"
+            >
+                <swiper-slide
+                    v-for="slideBlock in 6"
+                    :key="slideBlock"
+                    class="slider__items"
+                >
+                    <slider-viewed-goods-item
+                        v-for="item in arrGoods"
+                        :key="item.id"
+                        :item="item"
+                    />
                 </swiper-slide>
             </swiper>
 

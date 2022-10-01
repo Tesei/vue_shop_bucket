@@ -16,8 +16,14 @@
                         </li>
                         <li class="check__parametr-row row-3">
                             <span class="check__info text">Установка</span>
-                            <div v-if="!(needInstallation)" class="check__parametr">Нет</div>
-                            <div v-else class="check__parametr">Да</div>
+                            <div
+                                v-if="!(needInstallation)"
+                                class="check__parametr"
+                            >Нет</div>
+                            <div
+                                v-else
+                                class="check__parametr"
+                            >Да</div>
                         </li>
                     </ul>
                 </div>
@@ -27,19 +33,35 @@
                         <div class="check__summ-amount-rub">{{ summWithSpace }} ₽</div>
                     </div>
                 </div>
-                <div class="check__buttons-row" v-if="!dataSending">
-                    <my-button class="btn check__btn check__btn_confirm" @click="orderSend">Оформить
+                <div
+                    class="check__buttons-row"
+                    v-if="!dataSending"
+                >
+                    <my-button
+                        class="btn check__btn check__btn_confirm"
+                        @click="orderSend"
+                    >Оформить
                         заказ</my-button>
-                    <my-button class="btn btn_color-reverse check__btn check__btn_buy-in-one-click">Купить в 1 клик
+                    <my-button class="btn btn_color-reverse check__btn check__btn_buy-in-one-click">
+                        Купить в 1 клик
                     </my-button>
                 </div>
-                <my-preloader v-else class="check__data-send" />
+                <my-preloader
+                    v-else
+                    class="check__data-send"
+                />
 
                 <transition-group name="check__data-send-message-anination">
-                    <span class="check__data-send-message text" v-if="orderError">Во время отправки данных произошёл
+                    <span
+                        class="check__data-send-message text"
+                        v-if="orderError"
+                    >Во время отправки данных произошёл
                         сбой!
                         Попробуйте оформить заказ заново.</span>
-                    <span class="check__data-send-message text" v-else-if="orderSuccess">Заказ сформирован!</span>
+                    <span
+                        class="check__data-send-message text"
+                        v-else-if="orderSuccess"
+                    >Заказ сформирован!</span>
                 </transition-group>
             </div>
 

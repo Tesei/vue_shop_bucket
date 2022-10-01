@@ -24,7 +24,7 @@ module.exports = {
   // Подключение общих стилей для всех компонентов:
   css: {
     loaderOptions: {
-      sass: {
+      scss: {
         additionalData: `@import "@/styles/index.scss";`
       }
     }

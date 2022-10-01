@@ -7,14 +7,19 @@
                     <div class="header__bucket-info info-bucket">
                         <div class="info-bucket__row">
                             <div class="info-bucket__image-wrap">
-                                <img src="@/images/icons/bucket3.svg" alt="корзина товаров" class="info-bucket__image">
+                                <img
+                                    src="@/images/icons/bucket3.svg"
+                                    alt="корзина товаров"
+                                    class="info-bucket__image"
+                                >
                             </div>
                             <div class="info-bucket__text">
                                 <span class="info-bucket__title">Ваша корзина</span>
                                 <span class="info-bucket__amount-of-goods">{{ amountGoods }}
                                     товара
                                 </span>
-                                <span class="info-bucket__summ-of-goods text">{{ summWithSpace }} ₽</span>
+                                <span class="info-bucket__summ-of-goods text">{{ summWithSpace }}
+                                    ₽</span>
                             </div>
                         </div>
                     </div>

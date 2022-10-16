@@ -121,10 +121,10 @@ export default createStore({
             setTimeout(()=> commit("setOrderSuccess", false), 3000)
           })
           .catch(e => {
-              commit("setErrors", [e]);
-              commit("setDataSending", false);
+              commit("setErrors", [e]);              
               commit("setOrderError", true);
           })
+          .finally(()=> commit("setDataSending", false))
   },
   async changeInstallStatus ({commit, state}){
     await axios.patch(`http://localhost:3000/api/order`, {status: state.needInstallation})
@@ -143,9 +143,9 @@ export default createStore({
             commit("setneedInstallation", response.data.needInstallation);    
           })
           .catch(e => {
-              commit("setErrors", [e]);
-              commit("setDataDownloading", false);
+              commit("setErrors", [e]);              
           })
+          .finally(()=> commit("setDataDownloading", false))
   },
   async updateDataOnServer({state, commit}){
     await axios.put(`http://localhost:3000/api/order`, {goods: state.goodsForBuy, needInstallation: state.needInstallation})

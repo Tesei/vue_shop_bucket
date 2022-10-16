@@ -1,7 +1,11 @@
 <template>
     <li class="slider__item item-slide">
         <div class="item-slide__image-wrap _ibg">
-            <img :src="itemImage" :alt=item.shortName class="item-slide__image">
+            <img
+                :src="itemImage"
+                :alt=item.shortName
+                class="item-slide__image"
+            >
         </div>
         <div class="item-slide__text">
             <div class="item-slide__title">{{ item.name }}</div>
@@ -17,7 +21,10 @@
                 <span class="item-slide__price-eur_to">643.86 €</span>
             </div>
         </div>
-        <my-button class="btn item-slide__btn" @click="addIteminList(item)">Добавить в корзину
+        <my-button
+            class="btn item-slide__btn"
+            @click="addIteminList(item)"
+        >Добавить в корзину
         </my-button>
     </li>
 </template>
